@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import PageHeader from './pageheader.js'
 import '../styles/registration.scss'
 
@@ -18,6 +18,17 @@ class RegistrationForm extends Component {
     console.log(this.state.showForm);
   }
 
+  showFormModal = () => {
+    return (
+      <Modal show={this.state.showForm} onHide={this.toggleShowForm}>
+        <Modal.Header>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+      </Modal>
+    )
+  }
+
 
   render() {
     return (
@@ -28,6 +39,7 @@ class RegistrationForm extends Component {
             be submitted, and you will receive a ballot at your given address</p>
             <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
         </div>
+        {this.showFormModal()}
       </>
 
     );
