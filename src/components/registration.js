@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-
-
+import { Button } from 'react-bootstrap';
+import PageHeader from './pageheader.js'
+import '../styles/registration.scss'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -15,27 +15,22 @@ class RegistrationForm extends Component {
     this.setState(prevState => ({
       showForm: !prevState.showForm,
     }));
+    console.log(this.state.showForm);
   }
 
 
   render() {
-    if (this.state.showForm) {
-      return (
-        <div id="registration-form-page">
-            <p>this is information the user will need to know</p>
-            <p>this is where the modal would be</p>
+    return (
+      <>
+        <div className="registration-form-page">
+            <PageHeader></PageHeader>
+            <p>Click the following button to fill out an absentee ballot! Note that once the form is complete, the application will automatically
+            be submitted, and you will receive a ballot at your given address</p>
             <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
         </div>
-      );
-    }
-    else {
-      return (
-        <div id="registration-form-page">
-            <p>this is information the user will need to know</p>
-            <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
-        </div>
-      );
-    }
+      </>
+
+    );
   }
 }
 
