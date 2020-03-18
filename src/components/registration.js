@@ -3,6 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import PageHeader from './pageheader.js'
 import '../styles/registration.scss'
 import '../styles/modals.scss'
+import SignaturePad from 'react-signature-canvas'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class RegistrationForm extends Component {
         </Modal.Header>
         <Modal.Title id="section-modal-title">Name</Modal.Title>
         <Modal.Body className="ballot-modal-body">
-          <form id="applicant-name-form" onSubmit={this.handleSubmit}>
+          <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <p>
               First Name:
               <input className="ballot-form-labels" type="text" name="firstName" onChange={this.handleChange}/>
@@ -77,7 +78,7 @@ class RegistrationForm extends Component {
         </Modal.Body>
         <Modal.Title id="section-modal-title">Address Information</Modal.Title>
         <Modal.Body className="ballot-modal-body">
-          <form id="applicant-name-form" onSubmit={this.handleSubmit}>
+          <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <Modal.Title id="address-modal-title">This is where you last registered to vote, if you don't know,
            please put your last dorm number and name.</Modal.Title>
             <p>
@@ -116,7 +117,7 @@ class RegistrationForm extends Component {
         </Modal.Body>
         <Modal.Title id="section-modal-title">Contact Information</Modal.Title>
         <Modal.Body className="ballot-modal-body">
-        <form id="applicant-name-form" onSubmit={this.handleSubmit}>
+        <form id="applicant-info-form" onSubmit={this.handleSubmit}>
           <p>
             Phone Number:
             <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange}/>
@@ -127,9 +128,12 @@ class RegistrationForm extends Component {
           </p>
           <p>
             Signature:
-            <input className="ballot-form-labels" type="text" name="lastName" onChange={this.handleChange}/>
           </p>
         </form>
+        <div className="sigContainer">
+          <SignaturePad canvasProps={{width: 400, height: 200, className: "sigPad"}}
+          ref={(ref) => { this.sigPad = ref }} />
+        </div>
         </Modal.Body>
         <Modal.Footer className="ballot-modal-footer">
           <Button className="ballot-modal-button" onClick={() => this.toggleShowForm()}>Cancel</Button>
