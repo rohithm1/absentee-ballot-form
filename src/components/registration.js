@@ -25,10 +25,11 @@ class RegistrationForm extends Component {
       zipCodeM: "",
       phoneNum: "",
       emailAddress: "",
+      trimmedDataURL: null,
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.sigPad = {};
   }
 
   toggleShowForm = () => {
@@ -47,6 +48,15 @@ class RegistrationForm extends Component {
     console.log("ok we made it to the submission");
     console.log(this.state)
     this.toggleShowForm();
+  }
+
+  clearCanvas = () => {
+    this.sigPad.clear();
+  }
+
+  trimAndSaveCanvas = () => {
+    this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
+      .toDataURL('image/png')})
   }
 
   showFormModal = () => {
@@ -134,6 +144,8 @@ class RegistrationForm extends Component {
           <SignaturePad canvasProps={{width: 400, height: 200, className: "sigPad"}}
           ref={(ref) => { this.sigPad = ref }} />
         </div>
+        <Button className="signature-clear-button" onClick={() => this.clearCanvas()}>Clear</Button>
+        <Button className="signature-save-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
         </Modal.Body>
         <Modal.Footer className="ballot-modal-footer">
           <Button className="ballot-modal-button" onClick={() => this.toggleShowForm()}>Cancel</Button>
@@ -156,6 +168,7 @@ class RegistrationForm extends Component {
             <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
         </div>
         {this.showFormModal()}
+        <img src={this.state.trimmedDataURL} alt="signature" />
       </>
 
     );
