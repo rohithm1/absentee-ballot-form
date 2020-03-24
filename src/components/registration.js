@@ -4,6 +4,7 @@ import PageHeader from './pageheader.js'
 import '../styles/registration.scss'
 import '../styles/modals.scss'
 import SignaturePad from 'react-signature-canvas'
+import AbsenteeApplication from '../images/absentee-ballot.png'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -26,6 +27,9 @@ class RegistrationForm extends Component {
       phoneNum: "",
       emailAddress: "",
       trimmedDataURL: null,
+      absenteeBallotImg: null,
+      previewPDF: false,
+      emailDateSigned: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,16 +42,27 @@ class RegistrationForm extends Component {
     }));
   }
 
+  togglePreview = () => {
+    this.setState(prevState => ({
+      previewPDF: !prevState.previewPDF,
+    }));
+    console.log(this.state.previewPDF);
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
+  //need to do the overlaying here
   handleSubmit = (event) => {
-    console.log("ok we made it to the submission");
-    console.log(this.state)
+    console.log("ok we made it to the preview");
+    console.log(this.state);
     this.toggleShowForm();
+    this.togglePreview();
+    console.log(this.state);
+    this.showPDFPreview();
   }
 
   clearCanvas = () => {
@@ -57,6 +72,49 @@ class RegistrationForm extends Component {
   trimAndSaveCanvas = () => {
     this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
       .toDataURL('image/png')})
+  }
+
+  handleSubmitApp = () => {
+    this.togglePreview();
+  }
+  //need to display the preview ehre
+  showPDFPreview = () => {
+    return (
+      <Modal id="mod-application-previw" show={this.state.previewPDF} onHide={this.togglePreview}>
+        <Modal.Header>
+          <Modal.Title>Application Preview</Modal.Title>
+        </Modal.Header>
+        <div className="image">
+          <img className="application-image" src={AbsenteeApplication} alt="application-preview" />
+          <p className="image-last-name">{this.state.lastName}</p>
+          <p className="image-first-name">{this.state.firstName}</p>
+          <p className="image-middle-name">{this.state.middleName}</p>
+          <p className="image-title">{this.state.titleName}</p>
+          <p className="image-home-address">{this.state.homeAddress}</p>
+          <p className="image-cityname-h">{this.state.cityNameH}</p>
+          <p className="image-ziopcode-h">{this.state.zipCodeH}</p>
+          <div className="image-street">
+            <p className="image-street-number">{this.state.streetNum}</p>
+            <p className="image-street-name">{this.state.streetName}</p>
+          </div>
+          <p className="image-aptNum">{this.state.aptNum}</p>
+          <p className="image-cityname-m">{this.state.cityNameH}</p>
+          <p className="image-statename-m">{this.state.stateNameM}</p>
+          <p className="image-zipcode-m">{this.state.zipCodeM}</p>
+          <p className="image-phone-number-first3">{this.state.phoneNum.substring(0,3)}</p>
+          <p className="image-phone-number-middle3">{this.state.phoneNum.substring(3,6)}</p>
+          <p className="image-phone-number-last4">{this.state.phoneNum.substring(6,10)}</p>
+          <p className="image-email-address-beginning">{this.state.emailAddress.substring(0, this.state.emailAddress.indexOf('@'))}</p>
+          <p className="image-email-address-ending">{this.state.emailAddress.substring(this.state.emailAddress.indexOf('@') + 1, this.state.emailAddress.length + 1)}</p>
+          <img src={this.state.trimmedDataURL} className="image-signature" alt="signature" />
+          <p className="image-date-signed">{this.state.emailDateSigned}</p>
+        </div>
+        <Modal.Footer className="ballot-modal-footer">
+          <Button className="ballot-modal-button" onClick={() => this.togglePreview()}>Cancel</Button>
+          <Button className="ballot-modal-button" type="submit" onClick={() => this.handleSubmitApp()}>Yes this looks right!</Button>
+        </Modal.Footer>
+      </Modal>
+    )
   }
 
   showFormModal = () => {
@@ -129,7 +187,7 @@ class RegistrationForm extends Component {
         <Modal.Body className="ballot-modal-body">
         <form id="applicant-info-form" onSubmit={this.handleSubmit}>
           <p>
-            Phone Number:
+            Phone Number (10 digits):
             <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange}/>
           </p>
           <p>
@@ -144,6 +202,10 @@ class RegistrationForm extends Component {
           <SignaturePad canvasProps={{width: 400, height: 200, className: "sigPad"}}
           ref={(ref) => { this.sigPad = ref }} />
         </div>
+        <p>
+          Date Signed:
+          <input className="ballot-form-labels" type="text" name="emailDateSigned" onChange={this.handleChange}/>
+        </p>
         <Button className="signature-clear-button" onClick={() => this.clearCanvas()}>Clear</Button>
         <Button className="signature-save-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
         </Modal.Body>
@@ -154,9 +216,7 @@ class RegistrationForm extends Component {
       </Modal>
     )
   }
-
   //want to add an "are you sure you want to submit"
-
 
   render() {
     return (
@@ -168,7 +228,7 @@ class RegistrationForm extends Component {
             <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
         </div>
         {this.showFormModal()}
-        <img src={this.state.trimmedDataURL} alt="signature" />
+        {this.showPDFPreview()}
       </>
 
     );
