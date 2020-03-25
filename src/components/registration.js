@@ -5,6 +5,10 @@ import '../styles/registration.scss'
 import '../styles/modals.scss'
 import SignaturePad from 'react-signature-canvas'
 import AbsenteeApplication from '../images/absentee-ballot.png'
+import PDFCreator from "./pdfcreator.js"
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { Document, Page } from 'react-pdf';
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -33,7 +37,8 @@ class RegistrationForm extends Component {
       qualifiedVoter: false,
       partyAff: false,
       partyAffiliation: "",
-      locationConf: false
+      locationConf: false,
+      applicationPDF: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -88,7 +93,7 @@ class RegistrationForm extends Component {
         <Modal.Header>
           <Modal.Title>Application Preview</Modal.Title>
         </Modal.Header>
-        <div className="image">
+        <div className="image" id="divToPrint">
           <img className="application-image" src={AbsenteeApplication} alt="application-preview" />
           <p className="image-last-name">{this.state.lastName}</p>
           <p className="image-first-name">{this.state.firstName}</p>
@@ -115,10 +120,29 @@ class RegistrationForm extends Component {
         </div>
         <Modal.Footer className="ballot-modal-footer">
           <Button className="ballot-modal-button" onClick={() => this.togglePreview()}>Cancel</Button>
-          <Button className="ballot-modal-button" type="submit" onClick={() => this.handleSubmitApp()}>Yes this looks right!</Button>
+          <Button className="ballot-modal-button" type="submit" onClick={() => this.printDocument()}>Yes this looks right!</Button>
         </Modal.Footer>
       </Modal>
     )
+  }
+
+
+  //potentially save to backend here instead of doing a setstate
+  printDocument = () => {
+    const input = document.getElementById('divToPrint');
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'JPEG', 0, 0);
+        // pdf.output('dataurlnewwindow');
+        this.setState(prevState => ({
+          applicationPDF: pdf,
+        }));
+      })
+    ;
+    this.togglePreview();
+    console.log(this.state)
   }
 
   showFormModal = () => {
@@ -178,7 +202,7 @@ class RegistrationForm extends Component {
               <input className="ballot-form-labels" type="text" name="cityNameM" onChange={this.handleChange}/>
             </p>
             <p>
-              State:
+              State (Acronym):
               <input className="ballot-form-labels" type="text" name="stateNameM" onChange={this.handleChange}/>
             </p>
             <p>
