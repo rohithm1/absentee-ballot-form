@@ -30,6 +30,10 @@ class RegistrationForm extends Component {
       absenteeBallotImg: null,
       previewPDF: false,
       emailDateSigned: "",
+      qualifiedVoter: false,
+      partyAff: false,
+      partyAffiliation: "",
+      locationConf: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -185,15 +189,48 @@ class RegistrationForm extends Component {
         </Modal.Body>
         <Modal.Title id="section-modal-title">Contact Information</Modal.Title>
         <Modal.Body className="ballot-modal-body">
+          <form id="applicant-info-form" onSubmit={this.handleSubmit}>
+          <Modal.Title id="address-modal-title">Please check the boxes.</Modal.Title>
+            <p><input
+            name="qualifiedVoter"
+            type="checkbox"
+            checked={this.state.qualifiedVoter}
+            onChange={this.handleChange} />  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+            <p><input
+            name="partyAff"
+            type="checkbox"
+            checked={this.state.partyAff}
+            onChange={this.handleChange} />  I am a member of, or I am now declaring my
+            affiliation with a party and I am requesting a ballot for
+            that party’s primary.</p> <select onChange={this.handleChange} name="partyAffiliation">
+                                        <option name="partyAffiliation">--- Select an option ---</option>
+                                        <option name="partyAffiliation">Democrat</option>
+                                        <option name="partyAffiliation">Republican</option>
+            </select>
+            <p><input
+            name="locationConf"
+            type="checkbox"
+            checked={this.state.locationConf}
+            onChange={this.handleChange} />  I plan to be absent on the day of
+            the election from the city, town, or unicorporated place where I am domicilied.</p>
+          </form>
+        </Modal.Body>
+        <Modal.Title id="section-modal-title">Agreement</Modal.Title>
+        <Modal.Body className="ballot-modal-body">
+          <form id="applicant-info-form" onSubmit={this.handleSubmit}>
+            <p>
+              Phone Number (10 digits):
+              <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange}/>
+            </p>
+            <p>
+              Email Address:
+              <input className="ballot-form-labels" type="text" name="emailAddress" onChange={this.handleChange}/>
+            </p>
+          </form>
+        </Modal.Body>
+        <Modal.Title id="section-modal-title">Signature</Modal.Title>
+        <Modal.Body className="ballot-modal-body">
         <form id="applicant-info-form" onSubmit={this.handleSubmit}>
-          <p>
-            Phone Number (10 digits):
-            <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange}/>
-          </p>
-          <p>
-            Email Address:
-            <input className="ballot-form-labels" type="text" name="emailAddress" onChange={this.handleChange}/>
-          </p>
           <p>
             Signature:
           </p>
@@ -203,7 +240,7 @@ class RegistrationForm extends Component {
           ref={(ref) => { this.sigPad = ref }} />
         </div>
         <p>
-          Date Signed:
+          Date Signed (MM/DD/YYYY):
           <input className="ballot-form-labels" type="text" name="emailDateSigned" onChange={this.handleChange}/>
         </p>
         <Button className="signature-clear-button" onClick={() => this.clearCanvas()}>Clear</Button>
