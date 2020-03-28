@@ -6,6 +6,7 @@ import SignaturePad from 'react-signature-canvas'
 import AbsenteeApplication from '../images/absentee-ballot.png'
 import PDFCreator from "./pdfcreator.js"
 import PageContent from './pagecontent.js'
+import PageFooter from './pagefooter.js'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Document, Page } from 'react-pdf';
@@ -325,6 +326,7 @@ class RegistrationForm extends Component {
             <PageHeader></PageHeader>
             <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Request Now</Button>
             <PageContent></PageContent>
+            <PageFooter></PageFooter>
         </div>
         {this.showFormModal()}
         {this.showPDFPreview()}
