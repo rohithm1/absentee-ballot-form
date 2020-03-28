@@ -1,10 +1,200 @@
 // registration form class
+
+.modal-dialog {
+  max-width: 300vh;
+  margin: 1.75rem auto;
+}
+#show-form-modal {
+  width: 130vh;
+}
+
+#mod-application-preview {
+  width: 100vh;
+}
+
+#modal-form-header {
+  display: flex;
+  flex-direction: column;
+}
+
+#show-form-title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 0 auto;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 0rem;
+}
+
+.show-form-description {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
+
+.form-data-container {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 100%;
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+}
+
+.form-title-container {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: -.1vh;
+  margin-left: 5vh;
+}
+
+.form-description-container {
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 15px;
+  text-align: left;
+  margin-left: 5vh;
+}
+
+input[type=text] {
+  box-sizing: border-box;
+  background: rgba(196, 196, 196, 0.25);
+  border-radius: 5px;
+}
+
+
+.formvalues-name-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 2vh;
+}
+
+.formvalues-nhaddress-container {
+  isplay: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 2vh;
+}
+
+.formvalues-regular-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-bottom: 2vh;
+  margin-left: 5vh;
+}
+
+.formvalues-agreement-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-bottom: 2vh;
+  margin-left: 5vh;
+}
+
+.formvalues-signature-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-bottom: 2vh;
+  margin-left: 5vh;
+}
+
+.formvalues-completion-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding-bottom: 2vh;
+  margin-left: 5vh;
+}
+
+.form-nhaddress-container {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 100%;
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+}
+
+.date-and-signature-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20vh;
+}
+
 #section-modal-title {
   margin: 0 auto;
 }
 
-.ballot-form-labels {
-  float: right;
+.ballot-form-labels-address {
+  width: 60%;
+  margin-left: 5vh;
+}
+
+.ballot-form-labels-streetname {
+  margin-left: 10.5vh;
+  width: 40%;
+}
+
+.ballot-form-labels-aptnm {
+  margin-left: 12.5vh;
+}
+
+.ballot-form-labels-statem {
+  margin-left: 10.5vh;
+}
+
+.ballot-form-labels-zipcode {
+  margin-left: 10.5vh;
+}
+
+.ballot-form-labels-phonenum {
+  width: 27%;
+}
+
+.ballot-form-labels-email {
+  margin-left: 30.5vh;
+  width: 30%;
+}
+
+.ballot-form-labels-affiliation {
+  width: 12%;
+  margin-bottom: 1vh;
+}
+
+.ballot-form-labels-datesigned {
+  width: 105%;
+}
+
+.ballot-form-labels-disabled-name {
+  width: 105%;
+}
+
+.signature-button {
+  width: 105%;
+  margin: 0 auto;
+  background-color: #082C7D;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 #address-modal-title {
@@ -20,11 +210,11 @@
 }
 
 .sigContainer {
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
-  margin-left: 2rem;
-  background-color: #FFFFDE;
+  background-color: rgba(196, 196, 196, 0.25);
+}
+
+.sigContainer2 {
+  background-color: rgba(196, 196, 196, 0.25);
 }
 
 .sigPad {
@@ -32,6 +222,55 @@
   height: 100%;
 }
 
-#mod-application-previw .modal-content {
+.sigPad2 {
+  width: 100%;
+  height: 100%;
+}
 
+.disabled-checkbox {
+  margin-left: 5vh;
+}
+
+.disabled-help-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 5vh;
+  padding-bottom: 4vh;
+}
+
+.disabled-name-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.disabled-signature-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10.5vh;
+}
+
+.disabled-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.ballot-modal-button {
+  width: 25%;
+  background-color: #082C7D;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.ballot-modal-button-submit {
+  width: 25%;
+  background-color: #082C7D;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 53vh;
 }
