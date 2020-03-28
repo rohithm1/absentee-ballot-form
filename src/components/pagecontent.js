@@ -43,7 +43,7 @@ class PageContent extends Component {
           <div className="following-info-box">
             <p className="box-title">What do I do when my Ballot comes?</p>
             <p className="box-information">Go to
-            <a href="https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551"> https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551</a> for instructions on how to fill out and submit your absentee ballot </p>
+            <a href="https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551"> https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551</a> for instructions on how to fill out and submit your absentee ballot. </p>
           </div>
           <div className="following-info-box">
             <p className="box-title">About Riley</p>
