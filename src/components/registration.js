@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Button, Modal } from 'react-bootstrap';
 import PageHeader from './pageheader.js'
-import '../styles/registration.scss'
-import '../styles/modals.scss'
 import SignaturePad from 'react-signature-canvas'
 import AbsenteeApplication from '../images/absentee-ballot.png'
 import PDFCreator from "./pdfcreator.js"
+import PageContent from './pagecontent.js'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Document, Page } from 'react-pdf';
+import '../styles/registration.scss'
+import '../styles/modals.scss'
 
 class RegistrationForm extends Component {
   constructor(props) {
@@ -139,10 +141,47 @@ class RegistrationForm extends Component {
         this.setState(prevState => ({
           applicationPDF: pdf,
         }));
+
+        const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
+
+        const URL = 'http://localhost:8080';
+
+        const formData = new FormData();
+        formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
+        formData.append('firstName', this.state.firstName);
+        formData.append('lastName', this.state.lastName);
+        formData.append('phoneNum', this.state.phoneNum);
+        formData.append('emailAdd', this.state.emailAddress);
+        formData.append('partyAff', this.state.partyAffiliation);
+        formData.append('dateSigned', this.state.emailDateSigned);
+
+        console.log(formData)
+
+        const request = new XMLHttpRequest();
+
+        request.onload = () => {
+          if (request.response !== undefined) {
+            console.log(request);
+          }
+        };
+
+        request.open('POST', `${URL}/send-form`, true);
+        request.responseType = 'json';
+        request.send(formData);
+
+        axios.post(`${URL}/received-data`, {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          phoneNum: this.state.phoneNum,
+          emailAdd: this.state.emailAddress,
+          partyAff: this.state.partyAffiliation,
+          dateSigned: this.state.emailDateSigned,
+        })
+        .then((response) => console.log("success"))
+        .catch((error) => console.log(error));
       })
     ;
     this.togglePreview();
-    console.log(this.state)
   }
 
   showFormModal = () => {
@@ -156,7 +195,7 @@ class RegistrationForm extends Component {
           <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <p>
               First Name:
-              <input className="ballot-form-labels" type="text" name="firstName" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="firstName" onChange={this.handleChange} required/>
             </p>
             <p>
               Middle Name:
@@ -164,10 +203,10 @@ class RegistrationForm extends Component {
             </p>
             <p>
               Last Name:
-              <input className="ballot-form-labels" type="text" name="lastName" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="lastName" onChange={this.handleChange} required/>
             </p>
             <p>
-              Title (Jr., Sr., II, III) (N/A if nothing):
+              Title (Jr., Sr., II, III):
               <input className="ballot-form-labels" type="text" name="titleName" onChange={this.handleChange}/>
             </p>
           </form>
@@ -179,7 +218,7 @@ class RegistrationForm extends Component {
            please put your last dorm number and name.</Modal.Title>
             <p>
               Home Address:
-              <input className="ballot-form-labels" type="text" name="homeAddress" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="homeAddress" onChange={this.handleChange} required/>
             </p>
             <p id="home-address-example-modal">(ex: '307 Richardson Hall' or '3 Ivy Lane')</p>
             <br />
@@ -187,27 +226,27 @@ class RegistrationForm extends Component {
             when the mail will be sent, please list where you will be at the end of August</Modal.Title>
             <p>
               Street Number/P.O. Box:
-              <input className="ballot-form-labels" type="text" name="streetNum" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="streetNum" onChange={this.handleChange} required/>
             </p>
             <p>
               Street Name:
-              <input className="ballot-form-labels" type="text" name="streetName" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="streetName" onChange={this.handleChange} required/>
             </p>
             <p>
-              Apt/Unit Name (N/A if nothing):
+              Apt/Unit Name:
               <input className="ballot-form-labels" type="text" name="aptNum" onChange={this.handleChange}/>
             </p>
             <p>
               City/Town:
-              <input className="ballot-form-labels" type="text" name="cityNameM" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="cityNameM" onChange={this.handleChange} required/>
             </p>
             <p>
               State (Acronym):
-              <input className="ballot-form-labels" type="text" name="stateNameM" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="stateNameM" onChange={this.handleChange} required/>
             </p>
             <p>
               Zip Code:
-              <input className="ballot-form-labels" type="text" name="zipCodeM" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="zipCodeM" onChange={this.handleChange} required/>
             </p>
           </form>
         </Modal.Body>
@@ -219,14 +258,14 @@ class RegistrationForm extends Component {
             name="qualifiedVoter"
             type="checkbox"
             checked={this.state.qualifiedVoter}
-            onChange={this.handleChange} />  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+            onChange={this.handleChange} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
             <p><input
             name="partyAff"
             type="checkbox"
             checked={this.state.partyAff}
-            onChange={this.handleChange} />  I am a member of, or I am now declaring my
+            onChange={this.handleChange} required/>  I am a member of, or I am now declaring my
             affiliation with a party and I am requesting a ballot for
-            that party’s primary.</p> <select onChange={this.handleChange} name="partyAffiliation">
+            that party’s primary.</p> <select onChange={this.handleChange} name="partyAffiliation" required>
                                         <option name="partyAffiliation">--- Select an option ---</option>
                                         <option name="partyAffiliation">Democrat</option>
                                         <option name="partyAffiliation">Republican</option>
@@ -235,7 +274,7 @@ class RegistrationForm extends Component {
             name="locationConf"
             type="checkbox"
             checked={this.state.locationConf}
-            onChange={this.handleChange} />  I plan to be absent on the day of
+            onChange={this.handleChange} required/>  I plan to be absent on the day of
             the election from the city, town, or unicorporated place where I am domicilied.</p>
           </form>
         </Modal.Body>
@@ -244,11 +283,11 @@ class RegistrationForm extends Component {
           <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <p>
               Phone Number (10 digits):
-              <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="phoneNum" onChange={this.handleChange} required/>
             </p>
             <p>
               Email Address:
-              <input className="ballot-form-labels" type="text" name="emailAddress" onChange={this.handleChange}/>
+              <input className="ballot-form-labels" type="text" name="emailAddress" onChange={this.handleChange} required/>
             </p>
           </form>
         </Modal.Body>
@@ -265,7 +304,7 @@ class RegistrationForm extends Component {
         </div>
         <p>
           Date Signed (MM/DD/YYYY):
-          <input className="ballot-form-labels" type="text" name="emailDateSigned" onChange={this.handleChange}/>
+          <input className="ballot-form-labels" type="text" name="emailDateSigned" onChange={this.handleChange} required/>
         </p>
         <Button className="signature-clear-button" onClick={() => this.clearCanvas()}>Clear</Button>
         <Button className="signature-save-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
@@ -284,9 +323,8 @@ class RegistrationForm extends Component {
       <>
         <div className="registration-form-page">
             <PageHeader></PageHeader>
-            <p>Click the following button to fill out an absentee ballot! Note that once the form is complete, the application will automatically
-            be submitted, and you will receive a ballot at your given address</p>
-            <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Complete Form</Button>
+            <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Request Now</Button>
+            <PageContent></PageContent>
         </div>
         {this.showFormModal()}
         {this.showPDFPreview()}
