@@ -306,7 +306,7 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="date-and-signature-buttons">
                   <input className="ballot-form-labels-datesigned" type="text" name="emailDateSigned" onChange={this.handleChange} placeholder="Date (e.g. MM/DD/YYYY)" required/>
-                  <Button className="signature-button" onClick={() => this.clearCanvas()}>Clear</Button>
+                  <Button className="signature-button" onClick={() => this.clearCanvas()}>Clear Signature</Button>
                   <Button className="signature-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
                 </div>
               </div>
@@ -324,7 +324,7 @@ class RegistrationForm extends Component {
                   <p>Print Name</p>
                   <div className="disabled-buttons-container">
                     <input className="ballot-form-labels-disabled-name" type="text" name="disabledHelpName" onChange={this.handleChange} placeholder="First and Last Name"/>
-                    <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear</Button>
+                    <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear Signature</Button>
                     <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
                   </div>
                 </div>
