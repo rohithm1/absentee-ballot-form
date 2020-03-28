@@ -189,7 +189,7 @@ class RegistrationForm extends Component {
     return (
       <Modal show={this.state.showForm} onHide={this.toggleShowForm}>
         <Modal.Header>
-          <Modal.Title>Absentee Ballot Application</Modal.Title>
+          <Modal.Title>Request an Absentee Ballot</Modal.Title>
         </Modal.Header>
         <Modal.Title id="section-modal-title">Name</Modal.Title>
         <Modal.Body className="ballot-modal-body">
