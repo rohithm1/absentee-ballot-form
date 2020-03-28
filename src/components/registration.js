@@ -228,7 +228,7 @@ class RegistrationForm extends Component {
           <Modal.Title id="show-form-title">Request an Absentee Ballot</Modal.Title>
           <p className="show-form-description">This form is a one-step process to electronically submit an absentee
           ballot request form for the state primary election in New Hampshire.</p>
-        </Modal.Header>
+      </Modal.Header>
         <Modal.Body className="ballot-modal-body">
           <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <div className="form-data-container">

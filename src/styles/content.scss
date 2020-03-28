@@ -25,19 +25,22 @@
 }
 
 .box-title {
+  padding: 10px;
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
   text-align: left;
   margin-left: 3vh;
+  margin-top: 1vh;
 }
-
-.box-information {
+.box-information{
+  padding: 10px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   text-align: left;
   margin-left: 3vh;
+  margin-top: -2vh;
 }
