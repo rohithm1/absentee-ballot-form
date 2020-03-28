@@ -67,6 +67,7 @@
   font-size: 15px;
   text-align: left;
   margin-left: 5vh;
+  margin-right: 5vh;
 }
 
 input[type=text] {
@@ -136,42 +137,53 @@ input[type=text] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 20vh;
+  margin-left: 15vh;
 }
 
 #section-modal-title {
   margin: 0 auto;
 }
+.ballot-form-labels {
+  padding: 3px;
+}
 
 .ballot-form-labels-address {
   width: 60%;
   margin-left: 5vh;
+  padding: 3px;
+
 }
 
 .ballot-form-labels-streetname {
   margin-left: 10.5vh;
   width: 40%;
+  padding: 3px;
 }
 
 .ballot-form-labels-aptnm {
   margin-left: 12.5vh;
+  padding: 3px;
 }
 
 .ballot-form-labels-statem {
   margin-left: 10.5vh;
+  padding: 3px;
 }
 
 .ballot-form-labels-zipcode {
   margin-left: 10.5vh;
+  padding: 3px;
 }
 
 .ballot-form-labels-phonenum {
   width: 27%;
+  padding: 3px;
 }
 
 .ballot-form-labels-email {
   margin-left: 30.5vh;
   width: 30%;
+  padding: 3px;
 }
 
 .ballot-form-labels-affiliation {
@@ -181,10 +193,12 @@ input[type=text] {
 
 .ballot-form-labels-datesigned {
   width: 105%;
+  padding: 3px;
 }
 
 .ballot-form-labels-disabled-name {
   width: 105%;
+  padding: 3px;
 }
 
 .signature-button {
