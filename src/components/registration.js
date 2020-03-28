@@ -45,6 +45,7 @@ class RegistrationForm extends Component {
       locationConf: false,
       applicationPDF: null,
       disabledHelpName: "",
+      formCompleted: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -55,6 +56,9 @@ class RegistrationForm extends Component {
   toggleShowForm = () => {
     this.setState(prevState => ({
       showForm: !prevState.showForm,
+      partyAff: false,
+      qualifiedVoter: false,
+      locationConf: false,
     }));
   }
 
@@ -70,9 +74,18 @@ class RegistrationForm extends Component {
     });
   }
 
+  handleChangeSelected = (event) => {
+    this.setState({
+      [event.target.name]: !this.state[event.target.name]
+    });
+  }
+
   //need to do the overlaying here
   handleSubmit = (event) => {
     console.log("ok we made it to the preview");
+    this.setState(prevState => ({
+      formCompleted: !prevState.formCompleted,
+    }));
     event.preventDefault();
     console.log(this.state);
     this.toggleShowForm();
@@ -132,7 +145,7 @@ class RegistrationForm extends Component {
           <p className="image-email-address-beginning">{this.state.emailAddress.substring(0, this.state.emailAddress.indexOf('@'))}</p>
           <p className="image-email-address-ending">{this.state.emailAddress.substring(this.state.emailAddress.indexOf('@') + 1, this.state.emailAddress.length + 1)}</p>
           <img src={this.state.trimmedDataURL} className="image-signature" alt="signature" />
-          <img src={this.state.trimmedDataURL2} className="image-signature2" alt="signature2" />
+          {this.signature2Null()}
           <p className="image-date-signed">{this.state.emailDateSigned}</p>
           <p className="image-disabled-name">{this.state.disabledHelpName}</p>
         </div>
@@ -142,6 +155,14 @@ class RegistrationForm extends Component {
         </Modal.Footer>
       </Modal>
     )
+  }
+
+  signature2Null = () => {
+    if (this.state.trimmedDataURL2 !== null) {
+      return (
+          <img src={this.state.trimmedDataURL2} className="image-signature2" alt="signature2" />
+      )
+    }
   }
 
 
@@ -230,8 +251,8 @@ class RegistrationForm extends Component {
               <p className="form-title-container">Out-of-State Address</p>
               <p className="form-description-container">This is where your ballot will be mailed. Please enter where you will be at the end of August.</p>
               <div className="formvalues-regular-container">
-                <input className="ballot-form-labels" type="text" name="streetNum" onChange={this.handleChange} placeholder="Street/Dorm No. (e.g. 1)" required/>
-                <input className="ballot-form-labels-streetname" type="text" name="streetName" onChange={this.handleChange} placeholder="Street/Dorm Name (e.g. Carpenter, Ivy Lane)" required/>
+                <input className="ballot-form-labels" type="text" name="streetNum" onChange={this.handleChange} placeholder="Street No. (e.g. 1)" required/>
+                <input className="ballot-form-labels-streetname" type="text" name="streetName" onChange={this.handleChange} placeholder="Street Name (e.g. Carpenter, Ivy Lane)" required/>
                 <input className="ballot-form-labels-aptnm" type="text" name="aptNum" placeholder="Apt No. (e.g. 1)" onChange={this.handleChange}/>
               </div>
               <div className="formvalues-regular-container">
@@ -255,12 +276,12 @@ class RegistrationForm extends Component {
                 name="qualifiedVoter"
                 type="checkbox"
                 checked={this.state.qualifiedVoter}
-                onChange={this.handleChange} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+                onChange={this.handleChangeSelected} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
                 <p><input
                 name="partyAff"
                 type="checkbox"
                 checked={this.state.partyAff}
-                onChange={this.handleChange} required/>  I am a member of, or I am now declaring my
+                onChange={this.handleChangeSelected} required/>  I am a member of, or I am now declaring my
                 affiliation with a party and I am requesting a ballot for
                 that party’s primary.</p> <select className="ballot-form-labels-affiliation" onChange={this.handleChange} name="partyAffiliation" required>
                                             <option name="partyAffiliation">Party</option>
@@ -271,7 +292,7 @@ class RegistrationForm extends Component {
                 name="locationConf"
                 type="checkbox"
                 checked={this.state.locationConf}
-                onChange={this.handleChange} required/>  I plan to be absent on the day of
+                onChange={this.handleChangeSelected} required/>  I plan to be absent on the day of
                 the election from the city, town, or unicorporated place where I am domicilied.</p>
               </div>
             </div>
@@ -297,12 +318,12 @@ class RegistrationForm extends Component {
               type="checkbox"
               className="disabled-checkbox"
               checked={this.state.disabledHelp}
-              onChange={this.handleChange} />  I attest that I assisted the applicant in executing this form because he/she has a disability.</p>
+              onChange={this.handleChangeSelected} />  I attest that I assisted the applicant in executing this form because he/she has a disability.</p>
               <div className="disabled-help-container">
                 <div className="disabled-name-container">
                   <p>Print Name</p>
                   <div className="disabled-buttons-container">
-                    <input className="ballot-form-labels-disabled-name" type="text" name="disabledHelpName" onChange={this.handleChange} placeholder="First and Last Name" required/>
+                    <input className="ballot-form-labels-disabled-name" type="text" name="disabledHelpName" onChange={this.handleChange} placeholder="First and Last Name"/>
                     <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear</Button>
                     <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
                   </div>
@@ -330,13 +351,28 @@ class RegistrationForm extends Component {
     )
   }
   //want to add an "are you sure you want to submit"
+  showButton = () => {
+    if (this.state.formCompleted === false) {
+      return (
+        <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Request Now</Button>
+      )
+    }
+    else {
+      return (
+        <div className="thank-you-note">
+          <p className="thank-you-title">Thank you!</p>
+          <p className="thank-you-description">Thank you for applying for an absentee ballot. It will be delivered late August. Happy election season!</p>
+        </div>
+      )
+    }
+  }
 
   render() {
     return (
       <>
         <div className="registration-form-page">
             <PageHeader></PageHeader>
-            <Button className="show-form-button" onClick={() => this.toggleShowForm()}>Request Now</Button>
+            {this.showButton()}
             <PageContent></PageContent>
             <PageFooter></PageFooter>
         </div>
