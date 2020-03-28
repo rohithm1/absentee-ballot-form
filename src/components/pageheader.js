@@ -19,7 +19,7 @@ class PageHeader extends Component {
           <img src={CheckMark} alt="check-mark-icon" className="check-mark-icon"></img>
         </>
         <div className="header-title-container">
-          <p className="title-top-content">Hanover Absentee ballot</p>
+          <p className="title-top-content">Hanover Absentee Ballot</p>
           <p className="title-bottom-content">"Live free or die" out of town</p>
         </div>
       </div>
