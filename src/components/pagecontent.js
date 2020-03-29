@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/content.scss'
-import Logo from '../../public/favicon.ico'
+import Logo from '../images/logo.png'
 
 class PageContent extends Component {
   constructor(props) {
