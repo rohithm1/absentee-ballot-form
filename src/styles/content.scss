@@ -9,17 +9,16 @@
     and (min-device-width : 320px)
     and (max-device-width : 480px){
       .mobileShow {display: none;}
+      p {
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 150%;
+        margin: 0 auto;
+      }
   }
 
-  p {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 150%;
-    margin: 0 auto;
-  }
-  
 }
 
 .mobile-show {
