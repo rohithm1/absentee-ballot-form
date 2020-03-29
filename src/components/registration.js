@@ -82,10 +82,6 @@ class RegistrationForm extends Component {
   handleSubmit = (event) => {
     this.trimAndSaveCanvas()
     this.trimAndSaveCanvas2()
-    console.log("ok we made it to the preview");
-    this.setState(prevState => ({
-      formCompleted: !prevState.formCompleted,
-    }));
     event.preventDefault();
     console.log(this.state);
     this.toggleShowForm();
@@ -180,6 +176,10 @@ class RegistrationForm extends Component {
 
   //potentially save to backend here instead of doing a setstate
   printDocument = () => {
+    console.log("ok we made it to the preview");
+    this.setState(prevState => ({
+      formCompleted: !prevState.formCompleted,
+    }));
     const input = document.getElementById('divToPrint');
     html2canvas(input)
       .then((canvas) => {
@@ -393,10 +393,5 @@ class RegistrationForm extends Component {
     );
   }
 }
-
-// <Button className="signature-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
-
-// <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
-
 
 export default RegistrationForm
