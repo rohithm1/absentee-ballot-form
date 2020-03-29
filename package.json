@@ -1,6 +1,11 @@
 {
   "name": "absentee-ballot-registration",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.13.0",
+    "npm": "^5.6.0",
+    "yarn": "^1.6.0"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -23,9 +28,6 @@
     "react-signature-canvas": "^1.0.3",
     "react-to-pdf": "^0.0.10",
     "transform-loader": "^0.2.4"
-  },
-  "engines": {
-    "node": "12.13.0",
   },
   "scripts": {
     "start": "react-scripts start",
