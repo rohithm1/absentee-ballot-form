@@ -1,38 +1,84 @@
-.new-hamp-icon {
-  position: relative;
-  width: 20vh;
-  margin-left: 2vh;
-}
-.check-mark-icon {
-  position: absolute;
-  width: 11vh;
-  left: 50px;
-  top: 65px;
+@media (max-width: 793px) {
+
+  .new-hamp-icon {
+    position: relative;
+    width: 10vh;
+    margin-left: 1vh;
+  }
+  .check-mark-icon {
+    position: absolute;
+    width: 6vh;
+    left: 3vh;
+    top: 7vh;
+  }
+
+  .header-container {
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .header-title-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title-top-content {
+    font-family: Times New Roman;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 25px;
+    border-bottom: 3px solid rgba(231, 173, 56, 0.65);
+  }
+
+  .title-bottom-content {
+    font-family: Times New Roman;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 15px;
+    margin-top: -2vh;
+  }
+
 }
 
-.header-container {
-  margin-top: 3vh;
-  display: flex;
-  flex-direction: row;
-}
+@media (min-width: 794px) {
 
-.header-title-container {
-  margin-left: 3vh;
-  display: flex;
-  flex-direction: column;
-}
+  .new-hamp-icon {
+    position: relative;
+    width: 20vh;
+    margin-left: 2vh;
+  }
+  .check-mark-icon {
+    position: absolute;
+    width: 11vh;
+    left: 50px;
+    top: 65px;
+  }
 
-.title-top-content {
-  font-family: Times New Roman;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 50px;
-  border-bottom: 3px solid rgba(231, 173, 56, 0.65);
-}
+  .header-container {
+    margin-top: 3vh;
+    display: flex;
+    flex-direction: row;
+  }
 
-.title-bottom-content {
-  font-family: Times New Roman;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 25px;
+  .header-title-container {
+    margin-left: 3vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title-top-content {
+    font-family: Times New Roman;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 50px;
+    border-bottom: 3px solid rgba(231, 173, 56, 0.65);
+  }
+
+  .title-bottom-content {
+    font-family: Times New Roman;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 25px;
+  }
 }
