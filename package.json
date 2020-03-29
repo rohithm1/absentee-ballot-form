@@ -24,6 +24,9 @@
     "react-to-pdf": "^0.0.10",
     "transform-loader": "^0.2.4"
   },
+  "engines": {
+    "node": "12.13.0",
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
