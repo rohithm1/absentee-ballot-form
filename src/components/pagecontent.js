@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/content.scss'
+import Logo from '../../public/favicon.ico'
 
 class PageContent extends Component {
   constructor(props) {
@@ -70,6 +71,10 @@ class PageContent extends Component {
         <br />
         <br />
         <br />
+        <div className="mobile-show">
+          <p>Our mobile version is currently in progress. Please visit our website on a computer! Thank you!</p>
+          <img src={Logo} alt="logo-tag" />
+        </div>
       </>
     );
   }
