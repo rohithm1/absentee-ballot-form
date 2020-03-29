@@ -4,12 +4,10 @@ import { Button, Modal } from 'react-bootstrap';
 import PageHeader from './pageheader.js'
 import SignaturePad from 'react-signature-canvas'
 import AbsenteeApplication from '../images/absentee-ballot.png'
-import PDFCreator from "./pdfcreator.js"
 import PageContent from './pagecontent.js'
 import PageFooter from './pagefooter.js'
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { Document, Page } from 'react-pdf';
 import '../styles/registration.scss'
 import '../styles/modals.scss'
 
@@ -82,6 +80,8 @@ class RegistrationForm extends Component {
 
   //need to do the overlaying here
   handleSubmit = (event) => {
+    this.trimAndSaveCanvas()
+    this.trimAndSaveCanvas2()
     console.log("ok we made it to the preview");
     this.setState(prevState => ({
       formCompleted: !prevState.formCompleted,
@@ -108,8 +108,12 @@ class RegistrationForm extends Component {
   }
 
   trimAndSaveCanvas2 = () => {
-    this.setState({trimmedDataURL2: this.sigPad2.getTrimmedCanvas()
-      .toDataURL('image/png')})
+    this.setState({
+      trimmedDataURL2: this.sigPad2.getTrimmedCanvas()
+      .toDataURL('image/png'),
+      disabled: true
+
+    })
   }
 
   handleSubmitApp = () => {
@@ -144,14 +148,14 @@ class RegistrationForm extends Component {
           <p className="image-phone-number-last4">{this.state.phoneNum.substring(6,10)}</p>
           <p className="image-email-address-beginning">{this.state.emailAddress.substring(0, this.state.emailAddress.indexOf('@'))}</p>
           <p className="image-email-address-ending">{this.state.emailAddress.substring(this.state.emailAddress.indexOf('@') + 1, this.state.emailAddress.length + 1)}</p>
-          <img src={this.state.trimmedDataURL} className="image-signature" alt="signature" />
+          {this.signature1Null()}
           {this.signature2Null()}
           <p className="image-date-signed">{this.state.emailDateSigned}</p>
           <p className="image-disabled-name">{this.state.disabledHelpName}</p>
         </div>
         <Modal.Footer className="ballot-modal-footer">
           <Button className="ballot-modal-button" onClick={() => this.togglePreview()}>Cancel</Button>
-          <Button className="ballot-modal-button" type="submit" onClick={() => this.printDocument()}>Yes this looks right!</Button>
+          <Button className="ballot-modal-button" type="submit" onClick={() => this.printDocument()}>Yes, this looks right!</Button>
         </Modal.Footer>
       </Modal>
     )
@@ -160,7 +164,15 @@ class RegistrationForm extends Component {
   signature2Null = () => {
     if (this.state.trimmedDataURL2 !== null) {
       return (
-          <img src={this.state.trimmedDataURL2} className="image-signature2" alt="signature2" />
+        <img src={this.state.trimmedDataURL2} className="image-signature2" alt="signature2" />
+      )
+    }
+  }
+
+  signature1Null = () => {
+    if (this.state.trimmedDataURL !== null) {
+      return (
+        <img src={this.state.trimmedDataURL} className="image-signature" alt="signature" />
       )
     }
   }
@@ -306,8 +318,7 @@ class RegistrationForm extends Component {
                 </div>
                 <div className="date-and-signature-buttons">
                   <input className="ballot-form-labels-datesigned" type="text" name="emailDateSigned" onChange={this.handleChange} placeholder="Date (e.g. MM/DD/YYYY)" required/>
-                  <Button className="signature-button" onClick={() => this.clearCanvas()}>Clear</Button>
-                  <Button className="signature-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
+                  <Button className="signature-button" onClick={() => this.clearCanvas()}>Clear Signature</Button>
                 </div>
               </div>
               <p className="form-description-container">Any person who witnesses
@@ -318,14 +329,13 @@ class RegistrationForm extends Component {
               type="checkbox"
               className="disabled-checkbox"
               checked={this.state.disabledHelp}
-              onChange={this.handleChangeSelected} />  I attest that I assisted the applicant in executing this form because he/she has a disability.</p>
+              onChange={this.handleChangeSelected} required />  I attest that if I signed the following line I assisted the applicant in executing this form because he/she has a disability.</p>
               <div className="disabled-help-container">
                 <div className="disabled-name-container">
                   <p>Print Name</p>
                   <div className="disabled-buttons-container">
                     <input className="ballot-form-labels-disabled-name" type="text" name="disabledHelpName" onChange={this.handleChange} placeholder="First and Last Name"/>
-                    <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear</Button>
-                    <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
+                    <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear Signature</Button>
                   </div>
                 </div>
                 <div className="disabled-signature-container">
@@ -383,5 +393,10 @@ class RegistrationForm extends Component {
     );
   }
 }
+
+// <Button className="signature-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
+
+  // <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
+
 
 export default RegistrationForm
