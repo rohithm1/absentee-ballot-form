@@ -193,7 +193,7 @@ class RegistrationForm extends Component {
 
         const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
 
-        const URL = 'http://localhost:8080';
+        const URL = 'http://absentee-ballot-backend.herokuapp.com';
 
         const formData = new FormData();
         formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
