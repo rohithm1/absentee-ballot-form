@@ -83,10 +83,8 @@ class RegistrationForm extends Component {
     this.trimAndSaveCanvas()
     this.trimAndSaveCanvas2()
     event.preventDefault();
-    console.log(this.state);
     this.toggleShowForm();
     this.togglePreview();
-    console.log(this.state);
     this.showPDFPreview();
   }
 
@@ -176,7 +174,6 @@ class RegistrationForm extends Component {
 
   //potentially save to backend here instead of doing a setstate
   printDocument = () => {
-    console.log("ok we made it to the preview");
     this.setState(prevState => ({
       formCompleted: !prevState.formCompleted,
     }));
@@ -186,7 +183,6 @@ class RegistrationForm extends Component {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF();
         pdf.addImage(imgData, 'JPEG', 0, 0);
-        // pdf.output('dataurlnewwindow');
         this.setState(prevState => ({
           applicationPDF: pdf,
         }));
@@ -203,8 +199,6 @@ class RegistrationForm extends Component {
         formData.append('emailAdd', this.state.emailAddress);
         formData.append('partyAff', this.state.partyAffiliation);
         formData.append('dateSigned', this.state.emailDateSigned);
-
-        console.log(formData)
 
         const request = new XMLHttpRequest();
 
@@ -324,12 +318,7 @@ class RegistrationForm extends Component {
               <p className="form-description-container">Any person who witnesses
               and assists a voter with a disability in executing this form shall sign their name, print their name, and certify
               their representation through checking the box in the spaces provided below.</p>
-              <p><input
-              name="disabledHelp"
-              type="checkbox"
-              className="disabled-checkbox"
-              checked={this.state.disabledHelp}
-              onChange={this.handleChangeSelected} required />  I attest that if I signed the following line I assisted the applicant in executing this form because he/she has a disability.</p>
+              <p className="attest-statement">I attest that I assisted the applicant in executing this form because he/she has a disability:</p>
               <div className="disabled-help-container">
                 <div className="disabled-name-container">
                   <p>Print Name</p>
@@ -348,7 +337,7 @@ class RegistrationForm extends Component {
               </div>
             </div>
             <div className="form-data-container">
-              <p className="form-description-container">Upon submission, your form will be submitted to the Hanover Town Clerk. A copy of your submitted form will also be emailed to the email provided above.</p>
+              <p className="form-description-container">Upon submission, your form will be submitted to the Hanover Town Clerk. </p>
               <div className="formvalues-completion-container">
                 <Button className="ballot-modal-button" onClick={() => this.toggleShowForm()}>Cancel</Button>
                 <Button className="ballot-modal-button-submit" type="submit">Submit Application</Button>

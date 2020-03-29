@@ -5,7 +5,7 @@
   margin: 1.75rem auto;
 }
 #show-form-modal {
-  width: 130vh;
+  width: 150vh;
 }
 
 #mod-application-preview {
@@ -246,7 +246,7 @@ input[type=text] {
 .disabled-signature-container {
   display: flex;
   flex-direction: column;
-  margin-left: 10.5vh;
+  margin-left: 20vh;
 }
 
 .disabled-buttons-container {
@@ -273,4 +273,9 @@ input[type=text] {
   font-weight: bold;
   font-size: 15px;
   margin-left: 53vh;
+}
+
+.attest-statement {
+  padding-bottom: 2vh;
+  margin-left: 5vh;
 }
