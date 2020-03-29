@@ -396,7 +396,7 @@ class RegistrationForm extends Component {
 
 // <Button className="signature-button" onClick={() => this.trimAndSaveCanvas()}>Save Signature</Button>
 
-  // <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
+// <Button className="signature-button" onClick={() => this.trimAndSaveCanvas2()}>Save Signature</Button>
 
 
 export default RegistrationForm
