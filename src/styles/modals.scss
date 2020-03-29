@@ -135,7 +135,7 @@ input[type=text] {
 .date-and-signature-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-left: 20vh;
 }
 
@@ -252,7 +252,7 @@ input[type=text] {
 .disabled-buttons-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 100%;
 }
 
