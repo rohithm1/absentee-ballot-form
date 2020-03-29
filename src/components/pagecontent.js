@@ -65,16 +65,17 @@ class PageContent extends Component {
              For more information, visit <a href="rileyfornh.com">rileyfornh.com</a> or email
              <a href="mailto:info@rileyfornh.com"> info@rileyfornh.com</a>. </p>
           </div>
+          <div className="mobile-show">
+            <p>Our mobile version is currently in progress. Please visit our website on a computer! Thank you!</p>
+            <img src={Logo} alt="logo-tag" className="logo-image"/>
+          </div>
           <br />
           <br />
         </div>
         <br />
         <br />
         <br />
-        <div className="mobile-show">
-          <p>Our mobile version is currently in progress. Please visit our website on a computer! Thank you!</p>
-          <img src={Logo} alt="logo-tag" />
-        </div>
+
       </>
     );
   }

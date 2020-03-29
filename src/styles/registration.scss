@@ -1,3 +1,21 @@
+@media (max-width: 793px) {
+  .show-form-button {
+    display: none;
+  }
+}
+
+@media (min-width: 794px) {
+  .show-form-button {
+    width: 15%;
+    margin: 0 auto;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
 .registration-form-page {
   display: flex;
   flex-direction: column;
@@ -6,15 +24,7 @@
 
 }
 
-.show-form-button {
-  width: 15%;
-  margin: 0 auto;
-  background-color: #082C7D;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-}
+
 
 .application-image {
   width: 400px;
