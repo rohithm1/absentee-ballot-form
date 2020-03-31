@@ -290,9 +290,9 @@ class RegistrationForm extends Component {
                 onChange={this.handleChangeSelected} required/>  I am a member of, or I am now declaring my
                 affiliation with a party and I am requesting a ballot for
                 that party’s primary.</p> <select className="ballot-form-labels-affiliation" onChange={this.handleChange} name="partyAffiliation" required>
-                                            <option name="partyAffiliation">Party</option>
+                                            <optgroup><option name="partyAffiliation">Party</option>
                                             <option name="partyAffiliation">Democrat</option>
-                                            <option name="partyAffiliation">Republican</option>
+                                            <option name="partyAffiliation">Republican</option></optgroup>
                                             </select>
                 <p className="select-container"><input
                 name="locationConf"
