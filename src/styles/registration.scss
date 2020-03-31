@@ -1,7 +1,214 @@
 @media (max-width: 793px) {
   .show-form-button {
-    display: none;
+    width: 25%;
+    margin: 0 auto;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
   }
+
+  .registration-form-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .application-image {
+    width: 400px;
+  }
+
+  .image {
+    position: relative;
+
+    p {
+      position:absolute;
+      font-size: 8px;
+    }
+    .image-last-name {
+      top: 30px;
+      left: 57px;
+      width: 100%;
+    }
+
+    .image-first-name {
+      top: 30px;
+      left: 153px;
+      width: 100%;
+    }
+
+    .image-middle-name {
+      top: 30px;
+      left: 250px;
+      width: 100%;
+    }
+
+    .image-title {
+      top: 30px;
+      left: 330px;
+      width: 100%;
+    }
+    .image-home-address {
+      top: 80px;
+      left: 58px;
+      width: 100%;
+    }
+    .image-cityname-h {
+      top: 80px;
+      left: 230px;
+      width: 100%;
+    }
+    .image-ziopcode-h {
+      top: 80px;
+      left: 340px;
+      width: 100%;
+    }
+
+    .image-street {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+
+    }
+    .image-street-number {
+      top: 127px;
+      left: 60px;
+      width: 100%;
+      position: absolute;
+    }
+    .image-street-name {
+      top: 127px;
+      left: 100px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-aptNum {
+      top: 127px;
+      left: 190px;
+      width: 100%;
+      position: absolute;
+    }
+    .image-cityname-m {
+      top: 127px;
+      left: 234px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-statename-m {
+      top: 127px;
+      left: 310px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-zipcode-m {
+      top: 127px;
+      left: 347px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-first3 {
+      top: 158px;
+      left: 160px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-middle3 {
+      top: 158px;
+      left: 187px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-last4 {
+      top: 158px;
+      left: 230px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-email-address-beginning {
+      top: 196px;
+      left: 152px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-email-address-ending {
+      top: 196px;
+      left: 260px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-signature {
+      top: 210px;
+      left: 140px;
+      width: 10%;
+      position: absolute;
+    }
+
+    .image-date-signed {
+      top: 215px;
+      left: 310px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-disabled-name {
+      top: 294px;
+      left: 240px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-signature2 {
+      top: 290px;
+      left: 90px;
+      width: 10%;
+      position: absolute;
+    }
+  }
+
+  .thank-you-note {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 80%;
+  }
+
+  .thank-you-title {
+    padding: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: left;
+    margin-left: 3vh;
+    margin-top: 1vh;
+  }
+
+  .thank-you-description {
+    padding: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 3vh;
+    margin-top: -2vh;
+  }
+
 }
 
 @media (min-width: 794px) {
@@ -14,207 +221,206 @@
     font-weight: bold;
     font-size: 20px;
   }
-}
-
-.registration-form-page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-
-}
 
 
-
-.application-image {
-  width: 400px;
-}
-
-.image {
-  position: relative;
-
-  p {
-    position:absolute;
-    font-size: 8px;
-  }
-  .image-last-name {
-    top: 30px;
-    left: 57px;
-    width: 100%;
-  }
-
-  .image-first-name {
-    top: 30px;
-    left: 153px;
-    width: 100%;
-  }
-
-  .image-middle-name {
-    top: 30px;
-    left: 250px;
-    width: 100%;
-  }
-
-  .image-title {
-    top: 30px;
-    left: 330px;
-    width: 100%;
-  }
-  .image-home-address {
-    top: 80px;
-    left: 58px;
-    width: 100%;
-  }
-  .image-cityname-h {
-    top: 80px;
-    left: 230px;
-    width: 100%;
-  }
-  .image-ziopcode-h {
-    top: 80px;
-    left: 340px;
-    width: 100%;
-  }
-
-  .image-street {
+  .registration-form-page {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
-
-  }
-  .image-street-number {
-    top: 127px;
-    left: 60px;
-    width: 100%;
-    position: absolute;
-  }
-  .image-street-name {
-    top: 127px;
-    left: 100px;
-    width: 100%;
-    position: absolute;
+    text-align: center;
   }
 
-  .image-aptNum {
-    top: 127px;
-    left: 190px;
-    width: 100%;
-    position: absolute;
-  }
-  .image-cityname-m {
-    top: 127px;
-    left: 234px;
-    width: 100%;
-    position: absolute;
+  .application-image {
+    width: 400px;
   }
 
-  .image-statename-m {
-    top: 127px;
-    left: 310px;
-    width: 100%;
-    position: absolute;
+  .image {
+    position: relative;
+
+    p {
+      position:absolute;
+      font-size: 8px;
+    }
+    .image-last-name {
+      top: 30px;
+      left: 57px;
+      width: 100%;
+    }
+
+    .image-first-name {
+      top: 30px;
+      left: 153px;
+      width: 100%;
+    }
+
+    .image-middle-name {
+      top: 30px;
+      left: 250px;
+      width: 100%;
+    }
+
+    .image-title {
+      top: 30px;
+      left: 330px;
+      width: 100%;
+    }
+    .image-home-address {
+      top: 80px;
+      left: 58px;
+      width: 100%;
+    }
+    .image-cityname-h {
+      top: 80px;
+      left: 230px;
+      width: 100%;
+    }
+    .image-ziopcode-h {
+      top: 80px;
+      left: 340px;
+      width: 100%;
+    }
+
+    .image-street {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+
+    }
+    .image-street-number {
+      top: 127px;
+      left: 60px;
+      width: 100%;
+      position: absolute;
+    }
+    .image-street-name {
+      top: 127px;
+      left: 100px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-aptNum {
+      top: 127px;
+      left: 190px;
+      width: 100%;
+      position: absolute;
+    }
+    .image-cityname-m {
+      top: 127px;
+      left: 234px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-statename-m {
+      top: 127px;
+      left: 310px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-zipcode-m {
+      top: 127px;
+      left: 347px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-first3 {
+      top: 158px;
+      left: 160px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-middle3 {
+      top: 158px;
+      left: 187px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-last4 {
+      top: 158px;
+      left: 230px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-email-address-beginning {
+      top: 196px;
+      left: 152px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-email-address-ending {
+      top: 196px;
+      left: 260px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-signature {
+      top: 210px;
+      left: 140px;
+      width: 10%;
+      position: absolute;
+    }
+
+    .image-date-signed {
+      top: 215px;
+      left: 310px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-disabled-name {
+      top: 294px;
+      left: 240px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-signature2 {
+      top: 290px;
+      left: 90px;
+      width: 10%;
+      position: absolute;
+    }
   }
 
-  .image-zipcode-m {
-    top: 127px;
-    left: 347px;
-    width: 100%;
-    position: absolute;
+  .thank-you-note {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 80%;
   }
 
-  .image-phone-number-first3 {
-    top: 158px;
-    left: 160px;
-    width: 100%;
-    position: absolute;
+  .thank-you-title {
+    padding: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: left;
+    margin-left: 3vh;
+    margin-top: 1vh;
   }
 
-  .image-phone-number-middle3 {
-    top: 158px;
-    left: 187px;
-    width: 100%;
-    position: absolute;
+  .thank-you-description {
+    padding: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 3vh;
+    margin-top: -2vh;
   }
 
-  .image-phone-number-last4 {
-    top: 158px;
-    left: 230px;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-email-address-beginning {
-    top: 196px;
-    left: 152px;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-email-address-ending {
-    top: 196px;
-    left: 260px;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-signature {
-    top: 210px;
-    left: 140px;
-    width: 10%;
-    position: absolute;
-  }
-
-  .image-date-signed {
-    top: 215px;
-    left: 310px;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-disabled-name {
-    top: 294px;
-    left: 240px;
-    width: 100%;
-    position: absolute;
-  }
-
-  .image-signature2 {
-    top: 290px;
-    left: 90px;
-    width: 10%;
-    position: absolute;
-  }
-}
-
-.thank-you-note {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  margin: 0 auto;
-  margin-top: 5vh;
-  width: 80%;
-}
-
-.thank-you-title {
-  padding: 10px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
-  text-align: left;
-  margin-left: 3vh;
-  margin-top: 1vh;
-}
-
-.thank-you-description {
-  padding: 10px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  text-align: left;
-  margin-left: 3vh;
-  margin-top: -2vh;
 }

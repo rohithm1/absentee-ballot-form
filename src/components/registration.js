@@ -262,7 +262,7 @@ class RegistrationForm extends Component {
                 <input className="ballot-form-labels-aptnm" type="text" name="aptNum" placeholder="Apt No. (e.g. 1)" onChange={this.handleChange}/>
               </div>
               <div className="formvalues-regular-container">
-                <input className="ballot-form-labels" type="text" name="cityNameM" onChange={this.handleChange} placeholder="City (e.g. Hanover)" required/>
+                <input className="ballot-form-labels-citym" type="text" name="cityNameM" onChange={this.handleChange} placeholder="City (e.g. Hanover)" required/>
                 <input className="ballot-form-labels-statem" type="text" name="stateNameM" placeholder="State (e.g. NH)" onChange={this.handleChange} required/>
                 <input className="ballot-form-labels-zipcode" type="text" name="zipCodeM" placeholder="Zip Code (e.g. 03755)" onChange={this.handleChange} required/>
               </div>
@@ -278,12 +278,12 @@ class RegistrationForm extends Component {
               <p className="form-title-container">Agreement</p>
               <p className="form-description-container">Please check the following boxes.</p>
               <div className="formvalues-agreement-container">
-                <p><input
+                <p className="select-container"><input
                 name="qualifiedVoter"
                 type="checkbox"
                 checked={this.state.qualifiedVoter}
                 onChange={this.handleChangeSelected} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
-                <p><input
+                <p className="select-container"><input
                 name="partyAff"
                 type="checkbox"
                 checked={this.state.partyAff}
@@ -294,7 +294,7 @@ class RegistrationForm extends Component {
                                             <option name="partyAffiliation">Democrat</option>
                                             <option name="partyAffiliation">Republican</option>
                                             </select>
-                <p><input
+                <p className="select-container"><input
                 name="locationConf"
                 type="checkbox"
                 checked={this.state.locationConf}
@@ -321,14 +321,14 @@ class RegistrationForm extends Component {
               <p className="attest-statement">I attest that I assisted the applicant in executing this form because he/she has a disability:</p>
               <div className="disabled-help-container">
                 <div className="disabled-name-container">
-                  <p>Print Name</p>
+                  <p className="disabled-name-title" >Print Name</p>
                   <div className="disabled-buttons-container">
                     <input className="ballot-form-labels-disabled-name" type="text" name="disabledHelpName" onChange={this.handleChange} placeholder="First and Last Name"/>
                     <Button className="signature-button" onClick={() => this.clearCanvas2()}>Clear Signature</Button>
                   </div>
                 </div>
                 <div className="disabled-signature-container">
-                  <p>Signature</p>
+                  <p className="disabled-name-signature">Signature</p>
                   <div className="sigContainer2">
                     <SignaturePad canvasProps={{width: 600, height: 130, className: "sigPad2"}}
                     ref={(ref) => { this.sigPad2 = ref }} />

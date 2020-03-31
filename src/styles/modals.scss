@@ -1,281 +1,604 @@
 // registration form class
+@media (max-width: 793px) {
+  .modal-dialog {
+    max-width: 47vh;
+    margin: 1.75rem auto;
+  }
+  #show-form-modal {
+    width: 150vh;
+  }
 
-.modal-dialog {
-  max-width: 300vh;
-  margin: 1.75rem auto;
+  #mod-application-preview {
+    width: 100vh;
+  }
+
+  #modal-form-header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #show-form-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+
+  .modal-body {
+      position: relative;
+      flex: 1 1 auto;
+      padding: 0rem;
+  }
+
+  .show-form-description {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 9px;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+  }
+
+  .form-data-container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 0vh;
+    margin-bottom: 2vh;
+  }
+
+  .form-title-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: -.1vh;
+    margin-left: 5vh;
+  }
+
+  .form-description-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 8px;
+    text-align: left;
+    margin-left: 5vh;
+    width: 80%;
+  }
+
+  input[type=text] {
+    box-sizing: border-box;
+    background: rgba(196, 196, 196, 0.25);
+    border-radius: 5px;
+    font-size: 6px;
+  }
+
+
+  .formvalues-name-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
+
+  .formvalues-nhaddress-container {
+    isplay: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 2vh;
+  }
+
+  .formvalues-regular-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
+
+  .formvalues-agreement-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+
+    .select-container {
+      font-size: 10px;
+      width: 80%;
+    }
+  }
+
+  .formvalues-signature-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 2vh;
+    margin-left: 0vh;
+  }
+
+  .formvalues-completion-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
+
+  .form-nhaddress-container {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 1vh;
+    margin-bottom: 2vh;
+  }
+
+  .date-and-signature-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5vh;
+  }
+
+  #section-modal-title {
+    margin: 0 auto;
+  }
+
+  .ballot-form-labels {
+    width: 70%;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-address {
+    width: 60%;
+    margin-left: 5vh;
+  }
+
+  .ballot-form-labels-streetname {
+    width: 60%;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-aptnm {
+    margin-bottom: 1vh;
+    width: 20%;
+  }
+
+  .ballot-form-labels-citym {
+    margin-bottom: 1vh;
+    width: 50%;
+  }
+
+  .ballot-form-labels-statem {
+    margin-bottom: 1vh;
+    width: 50%;
+  }
+
+  .ballot-form-labels-zipcode {
+    margin-bottom: 1vh;
+    width: 50%;
+  }
+
+  .ballot-form-labels-phonenum {
+    width: 50%;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-email {
+    width: 50%;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-affiliation {
+    width: 45%;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-datesigned {
+    width: 50%;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+
+  .ballot-form-labels-disabled-name {
+    width: 50%;
+    margin-top: -1vh;
+    margin-bottom: 1vh;
+  }
+
+  .signature-button {
+    width: 50%;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 9px;
+  }
+
+  #address-modal-title {
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #home-address-example-modal {
+    font-size: 10px;
+    float: right;
+    margin: 0;
+  }
+
+  .sigContainer {
+    background-color: rgba(196, 196, 196, 0.25);
+  }
+
+  .sigContainer2 {
+    background-color: rgba(196, 196, 196, 0.25);
+    margin-left: -5vh;
+  }
+
+  .sigPad {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sigPad2 {
+    width: 100%;
+    height: 100%;
+  }
+
+  .disabled-checkbox {
+    margin-left: 5vh;
+  }
+
+  .disabled-help-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vh;
+    padding-bottom: 4vh;
+  }
+
+  .disabled-name-title {
+    font-size: 10px;
+  }
+  .disabled-name-signature {
+    font-size: 10px;
+    margin-top: 2vh;
+  }
+
+  .disabled-name-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .disabled-signature-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .disabled-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .ballot-modal-button {
+    width: 25%;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 8px;
+  }
+
+  .ballot-modal-button-submit {
+    width: 25%;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 8px;
+    margin-left: 9vh;
+  }
+
+  .attest-statement {
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+    font-size: 9px;
+  }
+
 }
-#show-form-modal {
-  width: 150vh;
-}
 
-#mod-application-preview {
-  width: 100vh;
-}
+@media (min-width: 793px) {
+  .modal-dialog {
+    max-width: 300vh;
+    margin: 1.75rem auto;
+  }
+  #show-form-modal {
+    width: 150vh;
+  }
 
-#modal-form-header {
-  display: flex;
-  flex-direction: column;
-}
+  #mod-application-preview {
+    width: 100vh;
+  }
 
-#show-form-title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 30px;
-  margin: 0 auto;
-}
+  #modal-form-header {
+    display: flex;
+    flex-direction: column;
+  }
 
-.modal-body {
-    position: relative;
-    flex: 1 1 auto;
-    padding: 0rem;
-}
+  #show-form-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0 auto;
+  }
 
-.show-form-description {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  margin: 0 auto;
-  width: 50%;
-  text-align: center;
-}
+  .modal-body {
+      position: relative;
+      flex: 1 1 auto;
+      padding: 0rem;
+  }
 
-.form-data-container {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  width: 100%;
-  padding-left: 1vh;
-  margin-bottom: 2vh;
-}
+  .show-form-description {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+  }
 
-.form-title-container {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  text-align: left;
-  margin-bottom: -.1vh;
-  margin-left: 5vh;
-}
+  .form-data-container {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 1vh;
+    margin-bottom: 2vh;
+  }
 
-.form-description-container {
-  font-family: Roboto;
-  font-style: normal;
-  font-size: 15px;
-  text-align: left;
-  margin-left: 5vh;
-}
+  .form-title-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: -.1vh;
+    margin-left: 5vh;
+  }
 
-input[type=text] {
-  box-sizing: border-box;
-  background: rgba(196, 196, 196, 0.25);
-  border-radius: 5px;
-}
+  .form-description-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 15px;
+    text-align: left;
+    margin-left: 5vh;
+    width: 80%;
+  }
+
+  input[type=text] {
+    box-sizing: border-box;
+    background: rgba(196, 196, 196, 0.25);
+    border-radius: 5px;
+  }
 
 
-.formvalues-name-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 2vh;
-}
+  .formvalues-name-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-bottom: 2vh;
+  }
 
-.formvalues-nhaddress-container {
-  isplay: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-around;
-  padding-bottom: 2vh;
-}
+  .formvalues-nhaddress-container {
+    isplay: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 2vh;
+  }
 
-.formvalues-regular-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  padding-bottom: 2vh;
-  margin-left: 5vh;
-}
+  .formvalues-regular-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
 
-.formvalues-agreement-container {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  padding-bottom: 2vh;
-  margin-left: 5vh;
-}
+  .formvalues-agreement-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
 
-.formvalues-signature-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  padding-bottom: 2vh;
-  margin-left: 5vh;
-}
+  }
 
-.formvalues-completion-container {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  padding-bottom: 2vh;
-  margin-left: 5vh;
-}
 
-.form-nhaddress-container {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  width: 100%;
-  padding-left: 1vh;
-  margin-bottom: 2vh;
-}
+  .formvalues-signature-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
 
-.date-and-signature-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-left: 20vh;
-}
+  .formvalues-completion-container {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
 
-#section-modal-title {
-  margin: 0 auto;
-}
+  .form-nhaddress-container {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 100%;
+    padding-left: 1vh;
+    margin-bottom: 2vh;
+  }
 
-.ballot-form-labels-address {
-  width: 60%;
-  margin-left: 5vh;
-}
+  .date-and-signature-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 20vh;
+  }
 
-.ballot-form-labels-streetname {
-  margin-left: 10.5vh;
-  width: 40%;
-}
+  #section-modal-title {
+    margin: 0 auto;
+  }
 
-.ballot-form-labels-aptnm {
-  margin-left: 12.5vh;
-}
+  .ballot-form-labels-address {
+    width: 60%;
+    margin-left: 5vh;
+  }
 
-.ballot-form-labels-statem {
-  margin-left: 10.5vh;
-}
+  .ballot-form-labels-streetname {
+    margin-left: 10.5vh;
+    width: 40%;
+  }
 
-.ballot-form-labels-zipcode {
-  margin-left: 10.5vh;
-}
+  .ballot-form-labels-aptnm {
+    margin-left: 12.5vh;
+  }
 
-.ballot-form-labels-phonenum {
-  width: 27%;
-}
 
-.ballot-form-labels-email {
-  margin-left: 30.5vh;
-  width: 30%;
-}
+  .ballot-form-labels-statem {
+    margin-left: 10.5vh;
+  }
 
-.ballot-form-labels-affiliation {
-  width: 12%;
-  margin-bottom: 1vh;
-}
+  .ballot-form-labels-zipcode {
+    margin-left: 10.5vh;
+  }
 
-.ballot-form-labels-datesigned {
-  width: 105%;
-}
+  .ballot-form-labels-phonenum {
+    width: 27%;
+  }
 
-.ballot-form-labels-disabled-name {
-  width: 105%;
-}
+  .ballot-form-labels-email {
+    margin-left: 30.5vh;
+    width: 30%;
+  }
 
-.signature-button {
-  width: 105%;
-  margin: 0 auto;
-  background-color: #082C7D;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-}
+  .ballot-form-labels-affiliation {
+    width: 12%;
+    margin-bottom: 1vh;
+  }
 
-#address-modal-title {
-  font-size: 12px;
-  margin: 0 auto;
-  text-align: center;
-}
+  .ballot-form-labels-datesigned {
+    width: 105%;
+  }
 
-#home-address-example-modal {
-  font-size: 10px;
-  float: right;
-  margin: 0;
-}
+  .ballot-form-labels-disabled-name {
+    width: 105%;
+  }
 
-.sigContainer {
-  background-color: rgba(196, 196, 196, 0.25);
-}
+  .signature-button {
+    width: 105%;
+    margin: 0 auto;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+  }
 
-.sigContainer2 {
-  background-color: rgba(196, 196, 196, 0.25);
-}
+  #address-modal-title {
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-.sigPad {
-  width: 100%;
-  height: 100%;
-}
+  #home-address-example-modal {
+    font-size: 10px;
+    float: right;
+    margin: 0;
+  }
 
-.sigPad2 {
-  width: 100%;
-  height: 100%;
-}
+  .sigContainer {
+    background-color: rgba(196, 196, 196, 0.25);
+  }
 
-.disabled-checkbox {
-  margin-left: 5vh;
-}
+  .sigContainer2 {
+    background-color: rgba(196, 196, 196, 0.25);
 
-.disabled-help-container {
-  display: flex;
-  flex-direction: row;
-  margin-left: 5vh;
-  padding-bottom: 4vh;
-}
+  }
 
-.disabled-name-container {
-  display: flex;
-  flex-direction: column;
-}
+  .sigPad {
+    width: 100%;
+    height: 100%;
+  }
 
-.disabled-signature-container {
-  display: flex;
-  flex-direction: column;
-  margin-left: 20vh;
-}
+  .sigPad2 {
+    width: 100%;
+    height: 100%;
+  }
 
-.disabled-buttons-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-}
+  .disabled-checkbox {
+    margin-left: 5vh;
+  }
 
-.ballot-modal-button {
-  width: 25%;
-  background-color: #082C7D;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-}
+  .disabled-help-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5vh;
+    padding-bottom: 4vh;
+  }
 
-.ballot-modal-button-submit {
-  width: 25%;
-  background-color: #082C7D;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  margin-left: 53vh;
-}
+  .disabled-name-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-.attest-statement {
-  padding-bottom: 2vh;
-  margin-left: 5vh;
+  .disabled-signature-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20vh;
+  }
+
+  .disabled-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .ballot-modal-button {
+    width: 25%;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .ballot-modal-button-submit {
+    width: 25%;
+    background-color: #082C7D;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 53vh;
+  }
+
+  .attest-statement {
+    padding-bottom: 2vh;
+    margin-left: 5vh;
+  }
+
 }
