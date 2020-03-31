@@ -1,15 +1,8 @@
 @media (max-width: 793px) {
 
   .new-hamp-icon {
-    position: relative;
     width: 10vh;
     margin-left: 1vh;
-  }
-  .check-mark-icon {
-    position: absolute;
-    width: 6vh;
-    left: 3vh;
-    top: 7vh;
   }
 
   .header-container {
@@ -44,16 +37,10 @@
 @media (min-width: 794px) {
 
   .new-hamp-icon {
-    position: relative;
-    width: 20vh;
+    width: 18vh;
     margin-left: 2vh;
   }
-  .check-mark-icon {
-    position: absolute;
-    width: 11vh;
-    left: 50px;
-    top: 65px;
-  }
+
 
   .header-container {
     margin-top: 3vh;

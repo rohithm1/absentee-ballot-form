@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import NewHampshire from '../images/new-hampshire.png'
-import CheckMark from '../images/checkmark.png'
+import Combined from '../images/combined.png'
 import '../styles/header.scss'
 
 class PageHeader extends Component {
@@ -15,8 +14,7 @@ class PageHeader extends Component {
     return (
       <div className="header-container">
         <>
-          <img src={NewHampshire} alt="new-hamp-icon" className="new-hamp-icon"></img>
-          <img src={CheckMark} alt="check-mark-icon" className="check-mark-icon"></img>
+          <img src={Combined} alt="new-hamp-icon" className="new-hamp-icon"></img>
         </>
         <div className="header-title-container">
           <p className="title-top-content">Hanover Absentee Ballot</p>
