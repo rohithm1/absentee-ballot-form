@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/content.scss'
-import Logo from '../images/logo.png'
 
 class PageContent extends Component {
   constructor(props) {
@@ -46,7 +45,7 @@ class PageContent extends Component {
             <p className="box-information">Go to
             <a href="https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551"> https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551</a> for instructions on how to fill out and submit your absentee ballot. </p>
           </div>
-          <div className="following-info-box">
+          {/* <div className="following-info-box">
             <p className="box-title">About Riley</p>
             <p className="box-information">Riley is a Dartmouth College ‘22 running to
             represent Hanover and Lyme in the New Hampshire state house. During
@@ -64,7 +63,7 @@ class PageContent extends Component {
              protect every student’s right to vote, and enact common sense gun laws.
              For more information, visit <a href="rileyfornh.com">rileyfornh.com</a> or email
              <a href="mailto:info@rileyfornh.com"> info@rileyfornh.com</a>. </p>
-          </div>
+          </div> */}
           <br />
           <br />
         </div>

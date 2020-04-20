@@ -61,6 +61,14 @@
     margin-left: 5vh;
   }
 
+  .form-radio-title-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    width: 80%;
+  }
+
   .form-description-container {
     font-family: Roboto;
     font-style: normal;
@@ -318,6 +326,10 @@
     font-size: 9px;
   }
 
+  .error-title-container {
+    margin: 0 auto;
+  }
+
 }
 
 @media (min-width: 793px) {
@@ -382,6 +394,14 @@
     margin-left: 5vh;
   }
 
+  .form-radio-title-container {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    width: 80%;
+  }
+
   .form-description-container {
     font-family: Roboto;
     font-style: normal;
@@ -428,6 +448,10 @@
     flex-direction: column;
     padding-bottom: 2vh;
     margin-left: 5vh;
+
+    .select-container {
+      width: 93%;
+    }
 
   }
 
@@ -603,6 +627,10 @@
   .attest-statement {
     padding-bottom: 2vh;
     margin-left: 5vh;
+  }
+
+  .error-title-container {
+    margin: 0 auto;
   }
 
 }

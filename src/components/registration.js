@@ -40,10 +40,11 @@ class RegistrationForm extends Component {
       disabledHelp: false,
       partyAff: false,
       partyAffiliation: "",
-      locationConf: false,
       applicationPDF: null,
       disabledHelpName: "",
       formCompleted: false,
+      ballotEntitled: false,
+      errorMod: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,7 +57,7 @@ class RegistrationForm extends Component {
       showForm: !prevState.showForm,
       partyAff: false,
       qualifiedVoter: false,
-      locationConf: false,
+      ballotEntitled: false
     }));
   }
 
@@ -66,9 +67,21 @@ class RegistrationForm extends Component {
     }));
   }
 
+  toggleErrorMod = () => {
+    this.setState(prevState => ({
+      errorMod: !prevState.errorMod,
+    }));
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
+    });
+  }
+
+  handleChangeRadio = (event) => {
+    this.setState({
+      [event.target.name]: true
     });
   }
 
@@ -80,6 +93,7 @@ class RegistrationForm extends Component {
 
   //need to do the overlaying here
   handleSubmit = (event) => {
+    console.log(this.state);
     this.trimAndSaveCanvas()
     this.trimAndSaveCanvas2()
     event.preventDefault();
@@ -113,6 +127,25 @@ class RegistrationForm extends Component {
   handleSubmitApp = () => {
     this.togglePreview();
   }
+
+  //need to display the preview ehre
+  showErrorMod = () => {
+    return (
+      <Modal id="mod-application-preview" show={this.state.errorMod} onHide={this.toggleErrorMod}>
+        <Modal.Header>
+          <Modal.Title className="error-title-container">Oops! The form was not submitted correctly.</Modal.Title>
+        </Modal.Header>
+        <p className="show-form-description">Unfortunately, the requirements for the form were not completed. Make sure
+          you correctly checked the radio buttons, signed the form, and filled out the information appropriately where indicated.</p>
+
+        <Modal.Footer className="ballot-modal-footer">
+          <Button className="ballot-modal-button" onClick={() => this.toggleErrorMod()}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
+
+
   //need to display the preview ehre
   showPDFPreview = () => {
     return (
@@ -172,58 +205,65 @@ class RegistrationForm extends Component {
   }
 
 
-  //potentially save to backend here instead of doing a setstate
   printDocument = () => {
-    this.setState(prevState => ({
-      formCompleted: !prevState.formCompleted,
-    }));
-    const input = document.getElementById('divToPrint');
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'JPEG', 0, 0);
-        this.setState(prevState => ({
-          applicationPDF: pdf,
-        }));
-        const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
+    if (!(this.state.ballotEntitled && this.state.qualifiedVoter)) {
+      this.togglePreview();
+      this.toggleErrorMod();
+    }
 
-        const URL = 'https://absentee-ballot-backend.herokuapp.com';
-        // const URL = 'http://localhost:8080';
-
-        const formData = new FormData();
-        formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
-        formData.append('firstName', this.state.firstName);
-        formData.append('lastName', this.state.lastName);
-        formData.append('phoneNum', this.state.phoneNum);
-        formData.append('emailAdd', this.state.emailAddress);
-        formData.append('partyAff', this.state.partyAffiliation);
-        formData.append('dateSigned', this.state.emailDateSigned);
-
-        const request = new XMLHttpRequest();
-
-        request.onload = () => {
-          if (request.response !== undefined) {
-            console.log(request);
-          }
-        };
-
-        request.open('POST', `${URL}/send-form`, true);
-        request.responseType = 'json';
-        request.send(formData);
-
-        axios.post(`${URL}/received-data`, {
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          phoneNum: this.state.phoneNum,
-          emailAdd: this.state.emailAddress,
-          partyAff: this.state.partyAffiliation,
-          dateSigned: this.state.emailDateSigned,
+    else {
+      this.setState(prevState => ({
+        formCompleted: !prevState.formCompleted,
+      }));
+      const input = document.getElementById('divToPrint');
+      html2canvas(input)
+        .then((canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF();
+          pdf.addImage(imgData, 'JPEG', 0, 0);
+          this.setState(prevState => ({
+            applicationPDF: pdf,
+          }));
+          const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
+  
+          const URL = 'https://absentee-ballot-backend.herokuapp.com';
+          // const URL = 'http://localhost:8080';
+  
+          const formData = new FormData();
+          formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
+          formData.append('firstName', this.state.firstName);
+          formData.append('lastName', this.state.lastName);
+          formData.append('phoneNum', this.state.phoneNum);
+          formData.append('emailAdd', this.state.emailAddress);
+          formData.append('partyAff', this.state.partyAffiliation);
+          formData.append('dateSigned', this.state.emailDateSigned);
+  
+          const request = new XMLHttpRequest();
+  
+          request.onload = () => {
+            if (request.response !== undefined) {
+              console.log(request);
+            }
+          };
+  
+          request.open('POST', `${URL}/send-form`, true);
+          request.responseType = 'json';
+          request.send(formData);
+  
+          axios.post(`${URL}/received-data`, {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            phoneNum: this.state.phoneNum,
+            emailAdd: this.state.emailAddress,
+            partyAff: this.state.partyAffiliation,
+            dateSigned: this.state.emailDateSigned,
+          })
+          .then((response) => console.log("success"))
+          .catch((error) => console.log(error));
         })
-        .then((response) => console.log("success"))
-        .catch((error) => console.log(error));
-      })
-    ;
+      ;
+    }
+   
     this.togglePreview();
   }
 
@@ -278,11 +318,21 @@ class RegistrationForm extends Component {
               <p className="form-title-container">Agreement</p>
               <p className="form-description-container">Please check the following boxes.</p>
               <div className="formvalues-agreement-container">
-                <p className="select-container"><input
-                name="qualifiedVoter"
-                type="checkbox"
-                checked={this.state.qualifiedVoter}
-                onChange={this.handleChangeSelected} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+                <p className="form-radio-title-container">Please Select 1: I hereby declare that</p>
+                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio} required/>  I am absent from the town/city where I am domiciled and will be until after the next election, 
+                or I am unable to register in person due to a disability, and request that the forms 
+                necessary for absentee voter registration be sent to me with the absentee ballot</p>
+                <p className="form-radio-title-container">Please Select 1: I will be entitled to vote by absentee ballot because </p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I plan to be absent on the day of the election from the city, town, or unincorporated place where I am domiciled.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I am requesting a ballot for the presidential primary election and I may be absent on the day of election from the city, 
+                town, or unincorporated place where I am domiciled, but the date of the election has not been announced. I understand that I may only make such a request 14 days after the filing period for 
+                candidates has closed, and that if I will not be absent on the date of the election I am not eligible to vote by absentee ballot.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I cannot appear in public on election day because of observance of a religious commitment.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I am unable to vote in person due to a disability.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the 
+                purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation.</p>
+                <p className="form-radio-title-container">Please complete the following information:</p>
                 <p className="select-container"><input
                 name="partyAff"
                 type="checkbox"
@@ -294,12 +344,6 @@ class RegistrationForm extends Component {
                                             <option name="partyAffiliation">Democrat</option>
                                             <option name="partyAffiliation">Republican</option></optgroup>
                                             </select>
-                <p className="select-container"><input
-                name="locationConf"
-                type="checkbox"
-                checked={this.state.locationConf}
-                onChange={this.handleChangeSelected} required/>  I plan to be absent on the day of
-                the election from the city, town, or unicorporated place where I am domicilied.</p>
               </div>
             </div>
             <div className="form-data-container">
@@ -377,6 +421,7 @@ class RegistrationForm extends Component {
         </div>
         {this.showFormModal()}
         {this.showPDFPreview()}
+        {this.showErrorMod()}
       </>
 
     );
