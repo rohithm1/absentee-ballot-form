@@ -206,7 +206,7 @@ class RegistrationForm extends Component {
 
 
   printDocument = () => {
-    if (!(this.state.ballotEntitled && this.state.qualifiedVoter)) {
+    if (this.state.ballotEntitled || this.state.qualifiedVoter) {
       this.togglePreview();
       this.toggleErrorMod();
     }
