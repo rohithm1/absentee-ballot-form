@@ -9,7 +9,7 @@
   }
 
   #mod-application-preview {
-    width: 100vh;
+    width: 102vh;
   }
 
   #modal-form-header {
@@ -342,7 +342,7 @@
   }
 
   #mod-application-preview {
-    width: 100vh;
+    width: 102vh;
   }
 
   #modal-form-header {
@@ -634,3 +634,8 @@
   }
 
 }
+.application-container {
+  display: flex;
+  flex-direction: row;
+}
+

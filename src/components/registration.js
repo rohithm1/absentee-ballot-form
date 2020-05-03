@@ -4,6 +4,8 @@ import { Button, Modal } from 'react-bootstrap';
 import PageHeader from './pageheader.js'
 import SignaturePad from 'react-signature-canvas'
 import AbsenteeApplication from '../images/absentee-ballot.png'
+import CheckBoxes from '../images/checkboxes.png'
+import BallotCheck from '../images/ballot-check.png'
 import PageContent from './pagecontent.js'
 import PageFooter from './pagefooter.js'
 import jsPDF from 'jspdf';
@@ -36,18 +38,17 @@ class RegistrationForm extends Component {
       absenteeBallotImg: null,
       previewPDF: false,
       emailDateSigned: "",
-      qualifiedVoter: false,
+      qualifiedVoter: 0,
       disabledHelp: false,
       partyAff: false,
-      partyAffiliation: "",
-      applicationPDF: null,
+      partyAffiliation: "Democrat",
+      applicationPDF1: null,
+      applicationPDF2: null,
       disabledHelpName: "",
       formCompleted: false,
-      ballotEntitled: false,
+      ballotEntitled: 0,
       errorMod: false,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.sigPad = {};
     this.sigPad2 = {};
   }
@@ -56,8 +57,6 @@ class RegistrationForm extends Component {
     this.setState(prevState => ({
       showForm: !prevState.showForm,
       partyAff: false,
-      qualifiedVoter: false,
-      ballotEntitled: false
     }));
   }
 
@@ -79,9 +78,10 @@ class RegistrationForm extends Component {
     });
   }
 
-  handleChangeRadio = (event) => {
+  handleChangeRadio = num => (event) => {
+    console.log(num)
     this.setState({
-      [event.target.name]: true
+      [event.target.name]: num
     });
   }
 
@@ -153,33 +153,41 @@ class RegistrationForm extends Component {
         <Modal.Header>
           <Modal.Title>Application Preview</Modal.Title>
         </Modal.Header>
-        <div className="image" id="divToPrint">
-          <img className="application-image" src={AbsenteeApplication} alt="application-preview" />
-          <p className="image-last-name">{this.state.lastName}</p>
-          <p className="image-first-name">{this.state.firstName}</p>
-          <p className="image-middle-name">{this.state.middleName}</p>
-          <p className="image-title">{this.state.titleName}</p>
-          <p className="image-home-address">{this.state.homeAddress}</p>
-          <p className="image-cityname-h">{this.state.cityNameH}</p>
-          <p className="image-ziopcode-h">{this.state.zipCodeH}</p>
-          <div className="image-street">
-            <p className="image-street-number">{this.state.streetNum}</p>
-            <p className="image-street-name">{this.state.streetName}</p>
-          </div>
-          <p className="image-aptNum">{this.state.aptNum}</p>
-          <p className="image-cityname-m">{this.state.cityNameH}</p>
-          <p className="image-statename-m">{this.state.stateNameM}</p>
-          <p className="image-zipcode-m">{this.state.zipCodeM}</p>
-          <p className="image-phone-number-first3">{this.state.phoneNum.substring(0,3)}</p>
-          <p className="image-phone-number-middle3">{this.state.phoneNum.substring(3,6)}</p>
-          <p className="image-phone-number-last4">{this.state.phoneNum.substring(6,10)}</p>
-          <p className="image-email-address-beginning">{this.state.emailAddress.substring(0, this.state.emailAddress.indexOf('@'))}</p>
-          <p className="image-email-address-ending">{this.state.emailAddress.substring(this.state.emailAddress.indexOf('@') + 1, this.state.emailAddress.length + 1)}</p>
-          {this.signature1Null()}
-          {this.signature2Null()}
-          <p className="image-date-signed">{this.state.emailDateSigned}</p>
-          <p className="image-disabled-name">{this.state.disabledHelpName}</p>
-        </div>
+            <div className="application-container" id="divToPrint" ref={this.myref} >
+              <div className="image" id="divToPrint1">
+                <img className="application-image" src={CheckBoxes} alt="application-preview-firstpage" />
+                <img className={'qualifiedvoter-check-' + this.state.qualifiedVoter}  src={BallotCheck} alt="application-preview-qualifiedvoter" />
+                <img className={'ballotentitled-check-' + this.state.ballotEntitled}  src={BallotCheck} alt="application-preview-ballotentitled" />
+                <img className={'partyaffiliation-check-' + this.state.partyAffiliation}  src={BallotCheck} alt="application-preview-ballotentitled" />
+              </div>
+              <div className="image" id="divToPrint2">
+                <img className="application-image" src={AbsenteeApplication} alt="application-preview" />
+                <p className="image-last-name">{this.state.lastName}</p>
+                <p className="image-first-name">{this.state.firstName}</p>
+                <p className="image-middle-name">{this.state.middleName}</p>
+                <p className="image-title">{this.state.titleName}</p>
+                <p className="image-home-address">{this.state.homeAddress}</p>
+                <p className="image-cityname-h">{this.state.cityNameH}</p>
+                <p className="image-ziopcode-h">{this.state.zipCodeH}</p>
+                <div className="image-street">
+                  <p className="image-street-number">{this.state.streetNum}</p>
+                  <p className="image-street-name">{this.state.streetName}</p>
+                </div>
+                <p className="image-aptNum">{this.state.aptNum}</p>
+                <p className="image-cityname-m">{this.state.cityNameH}</p>
+                <p className="image-statename-m">{this.state.stateNameM}</p>
+                <p className="image-zipcode-m">{this.state.zipCodeM}</p>
+                <p className="image-phone-number-first3">{this.state.phoneNum.substring(0,3)}</p>
+                <p className="image-phone-number-middle3">{this.state.phoneNum.substring(3,6)}</p>
+                <p className="image-phone-number-last4">{this.state.phoneNum.substring(6,10)}</p>
+                <p className="image-email-address-beginning">{this.state.emailAddress.substring(0, this.state.emailAddress.indexOf('@'))}</p>
+                <p className="image-email-address-ending">{this.state.emailAddress.substring(this.state.emailAddress.indexOf('@') + 1, this.state.emailAddress.length + 1)}</p>
+                {this.signature1Null()}
+                {this.signature2Null()}
+                <p className="image-date-signed">{this.state.emailDateSigned}</p>
+                <p className="image-disabled-name">{this.state.disabledHelpName}</p>
+              </div>
+            </div>
         <Modal.Footer className="ballot-modal-footer">
           <Button className="ballot-modal-button" onClick={() => this.togglePreview()}>Cancel</Button>
           <Button className="ballot-modal-button" type="submit" onClick={() => this.printDocument()}>Yes, this looks right!</Button>
@@ -206,7 +214,7 @@ class RegistrationForm extends Component {
 
 
   printDocument = () => {
-    if (this.state.ballotEntitled || this.state.qualifiedVoter) {
+    if (this.state.ballotEntitled === 0 || this.state.qualifiedVoter === 0) {
       this.togglePreview();
       this.toggleErrorMod();
     }
@@ -216,18 +224,33 @@ class RegistrationForm extends Component {
         formCompleted: !prevState.formCompleted,
       }));
       const input = document.getElementById('divToPrint');
-      html2canvas(input)
+      console.log(input)
+
+      var HTML_Width = input.clientHeight;
+      var HTML_Height = input.clientWidth;
+      var top_left_margin = 0;
+      var PDF_Width = HTML_Width+(top_left_margin*2);
+      var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+      var canvas_image_width = HTML_Width;
+      var canvas_image_height = HTML_Height;
+      
+      html2canvas(input,{allowTaint:true})
         .then((canvas) => {
-          const imgData = canvas.toDataURL('image/png');
-          const pdf = new jsPDF();
-          pdf.addImage(imgData, 'JPEG', 0, 0);
-          this.setState(prevState => ({
-            applicationPDF: pdf,
-          }));
+          const ctx = canvas.getContext('2d');
+			
+			    console.log(canvas.height+"  "+canvas.width);
+          const imgData = canvas.toDataURL('image/jpeg');          
+          var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+          pdf.addImage(imgData, 'JPEG', top_left_margin, top_left_margin,canvas_image_width*2,canvas_image_height);
+          pdf.addPage()
+          pdf.addImage(imgData, 'JPEG', -550, top_left_margin,canvas_image_width*2,canvas_image_height);
+
+
+
           const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
   
-          const URL = 'https://absentee-ballot-backend.herokuapp.com';
-          // const URL = 'http://localhost:8080';
+          // const URL = 'https://absentee-ballot-backend.herokuapp.com';
+          const URL = 'http://localhost:8080';
   
           const formData = new FormData();
           formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
@@ -319,18 +342,18 @@ class RegistrationForm extends Component {
               <p className="form-description-container">Please check the following boxes.</p>
               <div className="formvalues-agreement-container">
                 <p className="form-radio-title-container">Please Select 1: I hereby declare that</p>
-                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
-                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio} required/>  I am absent from the town/city where I am domiciled and will be until after the next election, 
+                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio(1)} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
+                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio(2)} required/>  I am absent from the town/city where I am domiciled and will be until after the next election, 
                 or I am unable to register in person due to a disability, and request that the forms 
                 necessary for absentee voter registration be sent to me with the absentee ballot</p>
                 <p className="form-radio-title-container">Please Select 1: I will be entitled to vote by absentee ballot because </p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I plan to be absent on the day of the election from the city, town, or unincorporated place where I am domiciled.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I am requesting a ballot for the presidential primary election and I may be absent on the day of election from the city, 
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(1)} required/>  I plan to be absent on the day of the election from the city, town, or unincorporated place where I am domiciled.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(2)} required/>  I am requesting a ballot for the presidential primary election and I may be absent on the day of election from the city, 
                 town, or unincorporated place where I am domiciled, but the date of the election has not been announced. I understand that I may only make such a request 14 days after the filing period for 
                 candidates has closed, and that if I will not be absent on the date of the election I am not eligible to vote by absentee ballot.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I cannot appear in public on election day because of observance of a religious commitment.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I am unable to vote in person due to a disability.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the 
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(3)} required/>  I cannot appear in public on election day because of observance of a religious commitment.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(4)} required/>  I am unable to vote in person due to a disability.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(5)} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the 
                 purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation.</p>
                 <p className="form-radio-title-container">Please complete the following information:</p>
                 <p className="select-container"><input
@@ -340,8 +363,7 @@ class RegistrationForm extends Component {
                 onChange={this.handleChangeSelected} required/>  I am a member of, or I am now declaring my
                 affiliation with a party and I am requesting a ballot for
                 that party’s primary.</p> <select className="ballot-form-labels-affiliation" onChange={this.handleChange} name="partyAffiliation" required>
-                                            <optgroup><option name="partyAffiliation">Party</option>
-                                            <option name="partyAffiliation">Democrat</option>
+                                            <optgroup><option name="partyAffiliation">Democrat</option>
                                             <option name="partyAffiliation">Republican</option></optgroup>
                                             </select>
               </div>

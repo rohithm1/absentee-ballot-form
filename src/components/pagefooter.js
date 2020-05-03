@@ -12,7 +12,7 @@ class PageFooter extends Component {
   render() {
     return (
       <div className="footer-container">
-        <p>Sponsored by Dartmouth Democrats for State Representative -- Contact at <a href="mailto:info@rileyfornh.com">info@rileyfornh.com</a></p>
+        <p>Sponsored by Dartmouth Democrats</p>
         <p>Offical Form found at <a href="https://sos.nh.gov/ElecForms2.aspx">NH.gov</a></p>
         <p>Designed and Developed by Dartmouth students</p>
 
