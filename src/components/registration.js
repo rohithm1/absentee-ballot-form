@@ -158,7 +158,9 @@ class RegistrationForm extends Component {
                 <img className="application-image" src={CheckBoxes} alt="application-preview-firstpage" />
                 <img className={'qualifiedvoter-check-' + this.state.qualifiedVoter}  src={BallotCheck} alt="application-preview-qualifiedvoter" />
                 <img className={'ballotentitled-check-' + this.state.ballotEntitled}  src={BallotCheck} alt="application-preview-ballotentitled" />
-                <img className={'partyaffiliation-check-' + this.state.partyAffiliation}  src={BallotCheck} alt="application-preview-ballotentitled" />
+                <img className={'partyaffiliation-check-' + this.state.partyAffiliation}  src={BallotCheck} alt="application-preview-partyaffiliation" />
+                <img className='state-election-check' src={BallotCheck} alt="application-preview-stateelection" />
+
               </div>
               <div className="image" id="divToPrint2">
                 <img className="application-image" src={AbsenteeApplication} alt="application-preview" />
