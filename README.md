@@ -1,3 +1,18 @@
+# Absentee Ballot Registration
+
+A way for students to vote despite the ongoing struggles of COVID-19/
+
+## Designed and Developed by Dartmouth Students
+
+Developers:
+Rohith Mandavilli '22
+Archita Harathi '22
+Thomas Monfre '21
+
+Designers:
+Archita Harathi '22
+Rohith Mandavilli '22
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
