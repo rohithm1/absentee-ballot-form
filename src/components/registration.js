@@ -250,8 +250,8 @@ class RegistrationForm extends Component {
 
           const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
   
-          const URL = 'https://absentee-ballot-backend.herokuapp.com';
-          // const URL = 'http://localhost:8080';
+          // const URL = 'https://absentee-ballot-backend.herokuapp.com';
+          const URL = 'http://localhost:8080';
   
           const formData = new FormData();
           formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
@@ -312,8 +312,8 @@ class RegistrationForm extends Component {
             </div>
             <div className="form-data-container">
               <div className="formvalues-nhaddress-container">
-                <p className="form-title-container">New Hampshire Address</p>
-                <p className="form-description-container">This is where you last registered to vote. If unknown, please enter your residence hall address.</p>
+                <p className="form-title-container">Registered Address</p>
+                <p className="form-description-container">For students: Please enter your dorm address  from when you last cast a vote. <br/>If you have a question about your registered address, contact Student Assembly at Student.Assembly@dartmouth.edu.</p>
                 <input className="ballot-form-labels-address" type="text" name="homeAddress" onChange={this.handleChange} placeholder="(ex: '307 Richardson Hall' or '3 Ivy Lane')" required/>
               </div>
             </div>
