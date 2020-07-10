@@ -176,7 +176,7 @@ class RegistrationForm extends Component {
                   <p className="image-street-name">{this.state.streetName}</p>
                 </div>
                 <p className="image-aptNum">{this.state.aptNum}</p>
-                <p className="image-cityname-m">{this.state.cityNameH}</p>
+                <p className="image-cityname-m">{this.state.cityNameM}</p>
                 <p className="image-statename-m">{this.state.stateNameM}</p>
                 <p className="image-zipcode-m">{this.state.zipCodeM}</p>
                 <p className="image-phone-number-first3">{this.state.phoneNum.substring(0,3)}</p>
