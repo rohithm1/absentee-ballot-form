@@ -16,6 +16,14 @@ class PageContent extends Component {
           <br />
           <br />
           <div className="info-box">
+            <p className="box-title">How do I fill out this form?</p>
+            <p className="box-information">You will be asked to fill in your information. If you do not know your 
+            address from when you last cast a vote, please email Betsy McClain at townclerk@hanovernh.org and ask, “What is my registered address?”.</p>
+            <p className="box-information">If you are a registered voter, please check option 1 of parts 1 and 2 of the Agreement. If you do not 
+            require assistance in filling out this form, you may leave blank the Signature and Print Name fields at the very bottom.</p>
+            <p className="box-information">With any additional questions, please contact Student Assembly at Student.Assembly@dartmouth.edu.</p>
+          </div>
+          <div className="following-info-box">
             <p className="box-title">Who can request an Absentee Ballot?</p>
             <p className="box-information">Any registered Hanover voter can request a Hanover Absentee Ballot.
             You must be a registered member of the party whose primary you are voting in.
@@ -45,6 +53,7 @@ class PageContent extends Component {
             <p className="box-information">Go to
             <a href="https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551"> https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551</a> for instructions on how to fill out and submit your absentee ballot. </p>
           </div>
+          
           {/* <div className="following-info-box">
             <p className="box-title">About Riley</p>
             <p className="box-information">Riley is a Dartmouth College ‘22 running to
