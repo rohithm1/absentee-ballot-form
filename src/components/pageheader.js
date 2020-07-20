@@ -17,7 +17,7 @@ class PageHeader extends Component {
           <img src={Combined} alt="new-hamp-icon" className="new-hamp-icon"></img>
         </>
         <div className="header-title-container">
-          <p className="title-top-content">Hanover Absentee Ballot - State Primary</p>
+          <p className="title-top-content">Hanover Absentee Ballot</p>
           <p className="title-bottom-content">"Live free or die" out of town</p>
         </div>
       </div>

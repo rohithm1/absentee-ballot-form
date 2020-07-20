@@ -48,6 +48,8 @@ class RegistrationForm extends Component {
       formCompleted: false,
       ballotEntitled: 0,
       errorMod: false,
+      stateGeneral: false,
+      statePrimary: false,
     };
     this.sigPad = {};
     this.sigPad2 = {};
@@ -158,8 +160,9 @@ class RegistrationForm extends Component {
                 <img className="application-image" src={CheckBoxes} alt="application-preview-firstpage" />
                 <img className={'qualifiedvoter-check-' + this.state.qualifiedVoter}  src={BallotCheck} alt="application-preview-qualifiedvoter" />
                 <img className={'ballotentitled-check-' + this.state.ballotEntitled}  src={BallotCheck} alt="application-preview-ballotentitled" />
+                {this.state.statePrimary && <img className={'stateprimary-check-' + this.state.statePrimary}  src={BallotCheck} alt="application-preview-partyaffiliation" />  }
+                {this.state.stateGeneral && <img className={'stategeneral-check-' + this.state.stateGeneral}  src={BallotCheck} alt="application-preview-partyaffiliation" /> }
                 <img className={'partyaffiliation-check-' + this.state.partyAffiliation}  src={BallotCheck} alt="application-preview-partyaffiliation" />
-                <img className='state-election-check' src={BallotCheck} alt="application-preview-stateelection" />
 
               </div>
               <div className="image" id="divToPrint2">
@@ -297,7 +300,7 @@ class RegistrationForm extends Component {
         <Modal.Header id="modal-form-header">
           <Modal.Title id="show-form-title">Request an Absentee Ballot</Modal.Title>
           <p className="show-form-description">This form is a one-step process to electronically submit an absentee
-          ballot request form for the state primary election in New Hampshire.</p>
+          ballot request form for the state primary and general election in New Hampshire.</p>
       </Modal.Header>
         <Modal.Body className="ballot-modal-body">
           <form id="applicant-info-form" onSubmit={this.handleSubmit}>
@@ -313,7 +316,7 @@ class RegistrationForm extends Component {
             <div className="form-data-container">
               <div className="formvalues-nhaddress-container">
                 <p className="form-title-container">Registered Address</p>
-                <p className="form-description-container">For students: Please enter your dorm address  from when you last cast a vote.</p>
+                <p className="form-description-container">For students: Please enter your dorm address from when you last cast a vote.</p>
                 <input className="ballot-form-labels-address" type="text" name="homeAddress" onChange={this.handleChange} placeholder="(ex: '307 Richardson Hall' or '3 Ivy Lane')" required/>
               </div>
             </div>
@@ -344,19 +347,27 @@ class RegistrationForm extends Component {
               <div className="formvalues-agreement-container">
                 <p className="form-radio-title-container">Please Select 1: I hereby declare that</p>
                 <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio(1)} required/>  I am a duly qualified voter who is currently registered to vote in this town/ward.</p>
-                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio(2)} required/>  I am absent from the town/city where I am domiciled and will be until after the next election, 
-                or I am unable to register in person due to a disability, and request that the forms 
-                necessary for absentee voter registration be sent to me with the absentee ballot</p>
+                <p className="select-container"><input name="qualifiedVoter" type="radio" onChange={this.handleChangeRadio(2)} required/>  I am absent from the town/city where I am domiciled and will be until after the next election, or I am unable to 
+                register in person due to a disability or concern for the novel coronavirus (COVID-19) and request that the forms necessary for absentee voter registration be sent to me with the absentee ballot</p>
                 <p className="form-radio-title-container">Please Select 1: I will be entitled to vote by absentee ballot because </p>
                 <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(1)} required/>  I plan to be absent on the day of the election from the city, town, or unincorporated place where I am domiciled.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(2)} required/>  I am requesting a ballot for the presidential primary election and I may be absent on the day of election from the city, 
-                town, or unincorporated place where I am domiciled, but the date of the election has not been announced. I understand that I may only make such a request 14 days after the filing period for 
-                candidates has closed, and that if I will not be absent on the date of the election I am not eligible to vote by absentee ballot.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(3)} required/>  I cannot appear in public on election day because of observance of a religious commitment.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(4)} required/>  I am unable to vote in person due to a disability.</p>
-                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(5)} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. For the 
-                purposes of this application, the term “employment” shall include the care of children and infirm adults, with or without compensation.</p>
-                <p className="form-radio-title-container">Please complete the following information:</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(2)} required/>  I cannot appear in public on election day because of observance of a religious commitment.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(3)} required/>  I am unable to vote in person due to a disability.</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(4)} required/>  I am unable to vote in person due to concern for the novel coronavirus (COVID-19).</p>
+                <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(5)} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. 
+                For the purposes of this application the term “employment” shall include the care of children and infirm adults, with or without compensation.</p>
+                <p className="form-radio-title-container">Please complete the following information</p>
+                <p>I am requesting an official absentee ballot for the following election(s):</p>
+                <p className="select-container"><input
+                name="statePrimary"
+                type="checkbox"
+                checked={this.state.statePrimary}
+                onChange={this.handleChangeSelected} required/> State Primary Election to be held on September 8, 2020</p> 
+                <p className="select-container"><input
+                name="stateGeneral"
+                type="checkbox"
+                checked={this.state.stateGeneral}
+                onChange={this.handleChangeSelected}/> State General Election to be held on November 3, 2020</p> 
                 <p className="select-container"><input
                 name="partyAff"
                 type="checkbox"
@@ -427,7 +438,7 @@ class RegistrationForm extends Component {
       return (
         <div className="thank-you-note">
           <p className="thank-you-title">Thank you!</p>
-          <p className="thank-you-description">Thank you for applying for an absentee ballot. It will be delivered late August. Happy election season!</p>
+          <p className="thank-you-description">Thank you for applying for an absentee ballot. Happy election season!</p>
         </div>
       )
     }
