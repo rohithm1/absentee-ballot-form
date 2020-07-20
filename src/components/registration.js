@@ -50,6 +50,7 @@ class RegistrationForm extends Component {
       errorMod: false,
       stateGeneral: false,
       statePrimary: false,
+      fullscreen: false,
     };
     this.sigPad = {};
     this.sigPad2 = {};
@@ -444,6 +445,26 @@ class RegistrationForm extends Component {
     }
   }
 
+  showFullScreen = () => {
+    return (
+      <Modal id="show-form-modal" show={!this.state.fullscreen} onHide={this.showFullScreen}>
+        <Modal.Header id="modal-form-header">
+          <Modal.Title id="show-form-title">Full Screen Warning!</Modal.Title>
+          <p className="show-form-description">Your window must be full screened in order to successfully complete the application!</p>
+        </Modal.Header>
+        <Modal.Footer className="ballot-modal-footer">
+          <Button className="fullscreen-modal-button" type="submit" onClick={() => this.changeScreen()}>Yes, I will full screen</Button>
+        </Modal.Footer>
+      </Modal>
+    )
+  }
+
+  changeScreen = () => {
+    this.setState({
+      fullscreen: true
+    })
+  }
+
   render() {
     return (
       <>
@@ -456,6 +477,7 @@ class RegistrationForm extends Component {
         {this.showFormModal()}
         {this.showPDFPreview()}
         {this.showErrorMod()}
+        {this.showFullScreen()}
       </>
 
     );
