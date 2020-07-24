@@ -82,7 +82,6 @@ class RegistrationForm extends Component {
   }
 
   handleChangeRadio = num => (event) => {
-    console.log(num)
     this.setState({
       [event.target.name]: num
     });
@@ -96,7 +95,6 @@ class RegistrationForm extends Component {
 
   //need to do the overlaying here
   handleSubmit = (event) => {
-    console.log(this.state);
     this.trimAndSaveCanvas()
     this.trimAndSaveCanvas2()
     event.preventDefault();
@@ -230,25 +228,19 @@ class RegistrationForm extends Component {
         formCompleted: !prevState.formCompleted,
       }));
       const input = document.getElementById('divToPrint');
-      console.log(input)
 
-      var HTML_Width = input.clientHeight;
-      var HTML_Height = input.clientWidth;
+      var HTML_Width = input.clientWidth;
+      var HTML_Height = input.clientHeight * 1.3;
       var top_left_margin = 0;
-      var PDF_Width = HTML_Width+(top_left_margin*2);
-      var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
-      var canvas_image_width = HTML_Width;
-      var canvas_image_height = HTML_Height;
       
       html2canvas(input,{allowTaint:true})
         .then((canvas) => {
 			
-			    console.log(canvas.height+"  "+canvas.width);
           const imgData = canvas.toDataURL('image/jpeg');          
-          var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
-          pdf.addImage(imgData, 'JPEG', top_left_margin, top_left_margin,canvas_image_width*2,canvas_image_height);
+          var pdf = new jsPDF('p', 'pt',  [HTML_Width / 2, HTML_Height]);
+          pdf.addImage(imgData, 'JPEG', top_left_margin + 20, 20, HTML_Width, HTML_Height);
           pdf.addPage()
-          pdf.addImage(imgData, 'JPEG', -550, top_left_margin,canvas_image_width*2,canvas_image_height);
+          pdf.addImage(imgData, 'JPEG', -HTML_Width/2 + 20, 20, HTML_Width, HTML_Height);
 
 
 
@@ -445,26 +437,6 @@ class RegistrationForm extends Component {
     }
   }
 
-  showFullScreen = () => {
-    return (
-      <Modal id="show-form-modal" show={!this.state.fullscreen} onHide={this.showFullScreen}>
-        <Modal.Header id="modal-form-header">
-          <Modal.Title id="show-form-title">Full Screen Warning!</Modal.Title>
-          <p className="show-form-description">Your window must be full screened in order to successfully complete the application!</p>
-        </Modal.Header>
-        <Modal.Footer className="ballot-modal-footer">
-          <Button className="fullscreen-modal-button" type="submit" onClick={() => this.changeScreen()}>Yes, I will full screen</Button>
-        </Modal.Footer>
-      </Modal>
-    )
-  }
-
-  changeScreen = () => {
-    this.setState({
-      fullscreen: true
-    })
-  }
-
   render() {
     return (
       <>
@@ -477,7 +449,6 @@ class RegistrationForm extends Component {
         {this.showFormModal()}
         {this.showPDFPreview()}
         {this.showErrorMod()}
-        {this.showFullScreen()}
       </>
 
     );
