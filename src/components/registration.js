@@ -150,7 +150,7 @@ class RegistrationForm extends Component {
   //need to display the preview ehre
   showPDFPreview = () => {
     return (
-      <Modal id="mod-application-preview" show={this.state.previewPDF} onHide={this.togglePreview}>
+      <Modal className="pdf-preview" id="mod-application-preview" show={this.state.previewPDF} onHide={this.togglePreview}>
         <Modal.Header>
           <Modal.Title>Application Preview</Modal.Title>
         </Modal.Header>
@@ -246,8 +246,8 @@ class RegistrationForm extends Component {
 
           const blobPDF = new Blob([ pdf.output('blob') ], { type: 'application/pdf' });
   
-          const URL = 'https://absentee-ballot-backend.herokuapp.com';
-          // const URL = 'http://localhost:8080';
+          // const URL = 'https://absentee-ballot-backend.herokuapp.com';
+          const URL = 'http://localhost:8080';
   
           const formData = new FormData();
           formData.append('file', blobPDF, `${this.state.firstName}_${this.state.lastName}.pdf`);
@@ -294,7 +294,7 @@ class RegistrationForm extends Component {
           <Modal.Title id="show-form-title">Request an Absentee Ballot</Modal.Title>
           <p className="show-form-description">This form is a one-step process to electronically submit an absentee
           ballot request form for the state primary and general election in New Hampshire.</p>
-      </Modal.Header>
+        </Modal.Header>
         <Modal.Body className="ballot-modal-body">
           <form id="applicant-info-form" onSubmit={this.handleSubmit}>
             <div className="form-data-container">
@@ -350,7 +350,7 @@ class RegistrationForm extends Component {
                 <p className="select-container"><input name="ballotEntitled" type="radio" onChange={this.handleChangeRadio(5)} required/>  I cannot appear at any time during polling hours at my polling place because of an employment obligation. 
                 For the purposes of this application the term “employment” shall include the care of children and infirm adults, with or without compensation.</p>
                 <p className="form-radio-title-container">Please complete the following information</p>
-                <p>I am requesting an official absentee ballot for the following election(s):</p>
+                <p className="absentee-request-statement">I am requesting an official absentee ballot for the following election(s):</p>
                 <p className="select-container"><input
                 name="statePrimary"
                 type="checkbox"

@@ -332,6 +332,14 @@
     margin: 0 auto;
   }
 
+  #divToPrint {
+    width: 1133px;
+    height: 800px;
+    font-size:15px;
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 @media (min-width: 793px) {
@@ -645,6 +653,12 @@
     margin: 0 auto;
   }
 
+  #divToPrint {
+    width: 850px;
+    height: 600px;
+    font-size:15px;
+  }
+  
 }
 .application-container {
   display: flex;
@@ -653,8 +667,3 @@
 
 
 
-#divToPrint {
-  width: 850px;
-  height: 600px;
-  font-size:15px;
-}

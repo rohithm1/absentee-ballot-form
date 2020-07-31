@@ -9,60 +9,146 @@
     font-size: 10px;
   }
 
+  .absentee-request-statement {
+    font-size: 12px;
+  }
+
   .registration-form-page {
     display: flex;
     flex-direction: column;
     width: 100%;
     text-align: center;
   }
-
+  .application-container {
+    display: flex;
+    flex-direction: column;
+  }
   .application-image {
-    width: 400px;
+    width: 300px;
   }
 
   .image {
     position: relative;
+    
 
     p {
       position:absolute;
       font-size: 8px;
     }
+    .qualifiedvoter-check-1 {
+      width: 6px;
+      position: absolute;
+      top: 50px;
+      left: 40px;
+    }
+
+    .qualifiedvoter-check-2 {
+      width: 6px;
+      position: absolute;
+      top: 57px;
+      left: 40px;
+    }
+
+    .ballotentitled-check-1 {
+      width: 6px;
+      position: absolute;
+      top: 105px;
+      left: 40px;
+    }
+
+    .ballotentitled-check-2 {
+      width: 6px;
+      position: absolute;
+      top: 120px;
+      left: 40px;
+    }
+
+    .ballotentitled-check-3 {
+      width: 6px;
+      position: absolute;
+      top: 137px;
+      left: 40px;
+    }
+
+    .ballotentitled-check-4 {
+      width: 6px;
+      position: absolute;
+      top: 145px;
+      left: 40px;
+    }
+
+    .ballotentitled-check-5 {
+      width: 6px;
+      position: absolute;
+      top: 153px;
+      left: 40px;
+    }
+
+    .stateprimary-check-true {
+      width: 6px;
+      position: absolute;
+      top: 223px;
+      left: 53px;
+    }
+
+
+    .stategeneral-check-true {
+      width: 6px;
+      position: absolute;
+      top: 284px;
+      left: 53px;
+    }
+
+    .partyaffiliation-check-Democrat {
+      width: 6px;
+      position: absolute;
+      top: 286px;
+      left: 48px;
+    }
+
+    .partyaffiliation-check-Republican {
+      width: 6px;
+      position: absolute;
+      top: 277px;
+      left: 48px;
+    }
+    
     .image-last-name {
-      top: 30px;
-      left: 57px;
+      top: 17px;
+      left: 39px;
       width: 100%;
     }
 
     .image-first-name {
-      top: 30px;
-      left: 153px;
+      top: 17px;
+      left: 103px;
       width: 100%;
     }
 
     .image-middle-name {
-      top: 30px;
-      left: 250px;
+      top: 17px;
+      left: 180px;
       width: 100%;
     }
 
     .image-title {
-      top: 30px;
-      left: 330px;
+      top: 17px;
+      left: 240px;
       width: 100%;
     }
     .image-home-address {
-      top: 80px;
-      left: 58px;
+      top: 52px;
+      left: 38px;
       width: 100%;
     }
     .image-cityname-h {
-      top: 80px;
-      left: 230px;
+      top: 52px;
+      left: 160px;
       width: 100%;
     }
     .image-ziopcode-h {
-      top: 80px;
-      left: 340px;
+      top: 52px;
+      left: 240px;
       width: 100%;
     }
 
@@ -72,105 +158,105 @@
       width: 100%;
     }
     .image-street-number {
-      top: 127px;
-      left: 60px;
+      top: 87px;
+      left: 40px;
       width: 100%;
       position: absolute;
     }
     .image-street-name {
-      top: 127px;
-      left: 100px;
+      top: 87px;
+      left: 80px;
       width: 100%;
       position: absolute;
     }
 
     .image-aptNum {
-      top: 127px;
-      left: 190px;
+      top: 87px;
+      left: 150px;
       width: 100%;
       position: absolute;
     }
     .image-cityname-m {
-      top: 127px;
-      left: 234px;
+      top: 87px;
+      left: 172px;
       width: 100%;
       position: absolute;
     }
 
     .image-statename-m {
-      top: 127px;
-      left: 310px;
-      width: 100%;
-      position: absolute;
-    }
-
-    .image-zipcode-m {
-      top: 127px;
-      left: 347px;
-      width: 100%;
-      position: absolute;
-    }
-
-    .image-phone-number-first3 {
-      top: 158px;
-      left: 160px;
-      width: 100%;
-      position: absolute;
-    }
-
-    .image-phone-number-middle3 {
-      top: 158px;
-      left: 187px;
-      width: 100%;
-      position: absolute;
-    }
-
-    .image-phone-number-last4 {
-      top: 158px;
+      top: 87px;
       left: 230px;
       width: 100%;
       position: absolute;
     }
 
+    .image-zipcode-m {
+      top: 87px;
+      left: 257px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-first3 {
+      top: 108px;
+      left: 113px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-middle3 {
+      top: 108px;
+      left: 130px;
+      width: 100%;
+      position: absolute;
+    }
+
+    .image-phone-number-last4 {
+      top: 108px;
+      left: 155px;
+      width: 100%;
+      position: absolute;
+    }
+
     .image-email-address-beginning {
-      top: 196px;
-      left: 152px;
+      top: 125px;
+      left: 102px;
       width: 100%;
       position: absolute;
     }
 
     .image-email-address-ending {
-      top: 196px;
-      left: 260px;
+      top: 129px;
+      left: 185px;
       width: 100%;
       position: absolute;
     }
 
     .image-signature {
-      top: 210px;
-      left: 140px;
-      width: 10%;
+      top: 140px;
+      left: 100px;
+      width: 4%;
       position: absolute;
     }
 
     .image-date-signed {
-      top: 215px;
-      left: 310px;
+      top: 145px;
+      left: 220px;
       width: 100%;
       position: absolute;
     }
 
     .image-disabled-name {
-      top: 294px;
-      left: 240px;
+      top: 230px;
+      left: 180px;
       width: 100%;
       position: absolute;
     }
 
     .image-signature2 {
-      top: 290px;
-      left: 90px;
-      width: 10%;
+      top: 230px;
+      left: 60px;
+      width: 4%;
       position: absolute;
     }
   }
