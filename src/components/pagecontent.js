@@ -53,6 +53,10 @@ class PageContent extends Component {
             <p className="box-information">Go to
             <a href="https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551"> https://sos.nh.gov/WorkArea/DownloadAsset.aspx?id=8589993551</a> for instructions on how to fill out and submit your absentee ballot. </p>
           </div>
+          <div className="following-info-box">
+            <p className="box-title">How do I register to vote?</p>
+            <p className="box-information">If you wish to register absentee as a voter in the Town of Hanover, please complete and mail <a href="https://sos.nh.gov/media/mjwcaeta/absentee-voter-registration-absence-covid.pdf"> this form</a> as well as the additional required documents to PO Box 483 Hanover, NH 03755</p>
+          </div>
           
           {/* <div className="following-info-box">
             <p className="box-title">About Riley</p>

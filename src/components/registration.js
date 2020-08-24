@@ -361,7 +361,7 @@ class RegistrationForm extends Component {
                 name="statePrimary"
                 type="checkbox"
                 checked={this.state.statePrimary}
-                onChange={this.handleChangeSelected} required/> State Primary Election to be held on September 8, 2020</p> 
+                onChange={this.handleChangeSelected}/> State Primary Election to be held on September 8, 2020</p> 
                 <p className="select-container"><input
                 name="stateGeneral"
                 type="checkbox"
@@ -371,7 +371,7 @@ class RegistrationForm extends Component {
                 name="partyAff"
                 type="checkbox"
                 checked={this.state.partyAff}
-                onChange={this.handleChangeSelected} required/>  I am a member of, or I am now declaring my
+                onChange={this.handleChangeSelected} />  I am a member of, or I am now declaring my
                 affiliation with a party and I am requesting a ballot for
                 that party’s primary.</p> <select className="ballot-form-labels-affiliation" onChange={this.handleChange} name="partyAffiliation" required>
                                             <optgroup><option name="partyAffiliation">Democrat</option>
